@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-09-23T13:26:07.000Z</updated>
+  <updated>2016-09-23T14:21:17.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -16,43 +16,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>中文测试.md</title>
-    <link href="http://blog.nudtcat.org/default/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95-md/"/>
-    <id>http://blog.nudtcat.org/default/中文测试-md/</id>
-    <published>2016-09-23T13:25:31.000Z</published>
-    <updated>2016-09-23T13:26:07.000Z</updated>
+    <title>珍惜大学仅剩的一年</title>
+    <link href="http://blog.nudtcat.org/default/%E7%8F%8D%E6%83%9C%E5%A4%A7%E5%AD%A6%E4%BB%85%E5%89%A9%E7%9A%84%E4%B8%80%E5%B9%B4/"/>
+    <id>http://blog.nudtcat.org/default/珍惜大学仅剩的一年/</id>
+    <published>2016-09-23T14:15:59.000Z</published>
+    <updated>2016-09-23T14:21:17.000Z</updated>
     
-    <content type="html"><![CDATA[<p>中文测试</p>
+    <content type="html"><![CDATA[<p>珍惜最后一年的大学生活</p>
+<ul>
+<li>写一篇优秀的毕业论文</li>
+<li>在大雨天跑一次步</li>
+<li>感受教学楼，图书馆，读几本书</li>
+<li>毕业旅行</li>
+<li>来一次冒险(骑行||徒步)</li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;中文测试&lt;/p&gt;
+      &lt;p&gt;珍惜最后一年的大学生活&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;写一篇优秀的毕业论文&lt;/li&gt;
+&lt;li&gt;在大雨天跑一次步&lt;/li&gt;
+&lt;li&gt;感受教学楼，图书馆，读几本书&lt;/li&gt;
+&lt;li&gt;毕业旅行&lt;/li&gt;
+&lt;li&gt;来一次冒险(骑行||徒步)&lt;/li&gt;
+&lt;/ul&gt;
 
     
     </summary>
     
     
-      <category term="测试" scheme="http://blog.nudtcat.org/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>测试</title>
-    <link href="http://blog.nudtcat.org/default/example/"/>
-    <id>http://blog.nudtcat.org/default/example/</id>
-    <published>2016-09-23T02:38:03.000Z</published>
-    <updated>2016-09-23T03:12:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是我的测试页面。<br><img src="/images/test.png" alt=""><br><a id="more"></a><br><img src="/images/test.png =100x100" alt=""><br><img src="/images/test.png" alt="这是啥"><br>测试测试<br><img src="/images/test.png" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是我的测试页面。&lt;br&gt;&lt;img src=&quot;/images/test.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
-    
-    </summary>
-    
+      <category term="大学生活" scheme="http://blog.nudtcat.org/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
