@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>喜欢冒险探索的程序猿</title>
+  <subtitle>喜欢冒险探索的程序猿</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.nudtcat.org/"/>
+  <updated>2016-09-23T13:26:07.000Z</updated>
+  <id>http://blog.nudtcat.org/</id>
+  
+  <author>
+    <name>nudtcat</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>中文测试.md</title>
+    <link href="http://blog.nudtcat.org/default/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95-md/"/>
+    <id>http://blog.nudtcat.org/default/中文测试-md/</id>
+    <published>2016-09-23T13:25:31.000Z</published>
+    <updated>2016-09-23T13:26:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>中文测试</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;中文测试&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="测试" scheme="http://blog.nudtcat.org/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>测试</title>
+    <link href="http://blog.nudtcat.org/default/example/"/>
+    <id>http://blog.nudtcat.org/default/example/</id>
+    <published>2016-09-23T02:38:03.000Z</published>
+    <updated>2016-09-23T03:12:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是我的测试页面。<br><img src="/images/test.png" alt=""><br><a id="more"></a><br><img src="/images/test.png =100x100" alt=""><br><img src="/images/test.png" alt="这是啥"><br>测试测试<br><img src="/images/test.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是我的测试页面。&lt;br&gt;&lt;img src=&quot;/images/test.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
