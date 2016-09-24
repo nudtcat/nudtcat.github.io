@@ -4,14 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 爬虫 | 喜欢冒险探索的程序猿</title>
+  <title>CRLF注入 | 喜欢冒险探索的程序猿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="喜欢冒险探索的程序猿">
-<meta property="og:url" content="http://blog.nudtcat.org/tags/爬虫/index.html">
+  <meta name="description" content="0x01 简介在HTTP协议中，HTTP请求与响应的各个字段之间的分隔符为\r\n，即CRLF。如果我们能在HTTP响应部分注入CRLF，并且加入自己的一部分代码，浏览器就会接受并且解析HTTP响应，完成我们想要的功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CRLF注入">
+<meta property="og:url" content="http://blog.nudtcat.org/default/CRLF注入/index.html">
 <meta property="og:site_name" content="喜欢冒险探索的程序猿">
+<meta property="og:description" content="0x01 简介在HTTP协议中，HTTP请求与响应的各个字段之间的分隔符为\r\n，即CRLF。如果我们能在HTTP响应部分注入CRLF，并且加入自己的一部分代码，浏览器就会接受并且解析HTTP响应，完成我们想要的功能。">
+<meta property="og:updated_time" content="2016-09-24T11:35:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="喜欢冒险探索的程序猿">
+<meta name="twitter:title" content="CRLF注入">
+<meta name="twitter:description" content="0x01 简介在HTTP协议中，HTTP请求与响应的各个字段之间的分隔符为\r\n，即CRLF。如果我们能在HTTP响应部分注入CRLF，并且加入自己的一部分代码，浏览器就会接受并且解析HTTP响应，完成我们想要的功能。">
   
     <link rel="alternative" href="/atom.xml" title="喜欢冒险探索的程序猿" type="application/atom+xml">
   
@@ -121,54 +125,97 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-CRLF注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/default/一个简单的爬虫/" class="archive-article-date">
-  	<time datetime="2016-09-24T03:31:03.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/default/一个简单的爬虫/">一个简单的爬虫</a>
+    <h1 class="article-title" itemprop="name">
+      CRLF注入
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h2><p>在HTTP协议中，HTTP请求与响应的各个字段之间的分隔符为\r\n，即CRLF。如果我们能在HTTP<strong>响应</strong>部分注入CRLF，并且加入自己的一部分代码，浏览器就会接受并且解析HTTP响应，完成我们想要的功能。<br><a id="more"></a></p>
+<h2 id="0x02-危害"><a href="#0x02-危害" class="headerlink" title="0x02 危害"></a>0x02 危害</h2><p>能注入HTTP响应部分，我们能干啥呢？HTTP响应分为head部分和body部分，head部分各个字段之间的分隔是\r\n，head与body的分隔是\r\n。我们可以注入到body中，加入javascript代码，形成xss攻击。只要能注入代码到body部分，所有在浏览器层面的攻击都能实行。</p>
+<p>另一个常见的攻击是注入头部，给当前的会话设置cookie，如果存在会话固定漏洞，那么就能获得用户对应的权限。</p>
+<h2 id="0x03-会话固定漏洞"><a href="#0x03-会话固定漏洞" class="headerlink" title="0x03 会话固定漏洞"></a>0x03 会话固定漏洞</h2><p>在CRLF注入head部分，设置cookie后，如果服务器接受了这个cookie，并且在用户登录后不改变这个cookie，那么攻击者就能使用这个cookie，拿到和合法用户一样的权限。</p>
+<h2 id="0x04-攻击方法"><a href="#0x04-攻击方法" class="headerlink" title="0x04 攻击方法"></a>0x04 攻击方法</h2><p>常见的攻击点在重定向的地方，如果没做过滤或者其它安全设置，直接在跳转的url后加上\r\n和要插入的代码，例如<a href="http://www.a.com/go.php?target=http://www.b.com\r\n\r\n" target="_blank" rel="external">http://www.a.com/go.php?target=http://www.b.com\r\n\r\n</a><script>alert(xss)</script>将这个url发送给要攻击的用户，ta点击了这个链接就会被攻击。在插入xss时，可能会被浏览器的xss filter阻止，只要在head部分插入X-XSS-Protection:0即可禁止浏览器的xss保护策略。另外，在location后面的javascript代码只会在内核为webkit的浏览器中运行。</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/default/CRLF注入/" class="archive-article-date">
+  	<time datetime="2016-09-25T02:33:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-25</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+    <a href="/default/从一个简单的RFID安全事件说起/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          从一个简单的RFID安全事件说起
+        
+      </div>
+    </a>
+  
+  
+    <a href="/default/宽字节注入问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">宽字节注入问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
 
 
       </div>
@@ -191,9 +238,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/"
