@@ -4,18 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>中文测试.md | 喜欢冒险探索的程序猿</title>
+  <title>一个简单的爬虫 | 喜欢冒险探索的程序猿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="中文测试">
+  <meta name="description" content="0x01 初衷最近准备开始写一些通用的自动化工具，以前也写过一些自动化的东西，不过都是用胶水把一些现成的工具粘连起来而已。自己开始写工具并不只是造轮子，我希望把尽自己最大的努力，每一个模块都做到最细致，规则做到最好，所以这个project会持续很长的时间，而且有可能会重构很多次。
+0x02 设计这个爬虫的作用是从一个网页作为开始，爬取相关联的网页。需要注意的有几个点，一是从html中获取链接，使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中文测试.md">
-<meta property="og:url" content="http://blog.nudtcat.org/default/中文测试-md/index.html">
+<meta property="og:title" content="一个简单的爬虫">
+<meta property="og:url" content="http://blog.nudtcat.org/default/一个简单的爬虫/index.html">
 <meta property="og:site_name" content="喜欢冒险探索的程序猿">
-<meta property="og:description" content="中文测试">
-<meta property="og:updated_time" content="2016-09-23T13:26:07.000Z">
+<meta property="og:description" content="0x01 初衷最近准备开始写一些通用的自动化工具，以前也写过一些自动化的东西，不过都是用胶水把一些现成的工具粘连起来而已。自己开始写工具并不只是造轮子，我希望把尽自己最大的努力，每一个模块都做到最细致，规则做到最好，所以这个project会持续很长的时间，而且有可能会重构很多次。
+0x02 设计这个爬虫的作用是从一个网页作为开始，爬取相关联的网页。需要注意的有几个点，一是从html中获取链接，使用">
+<meta property="og:updated_time" content="2016-09-24T03:32:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中文测试.md">
-<meta name="twitter:description" content="中文测试">
+<meta name="twitter:title" content="一个简单的爬虫">
+<meta name="twitter:description" content="0x01 初衷最近准备开始写一些通用的自动化工具，以前也写过一些自动化的东西，不过都是用胶水把一些现成的工具粘连起来而已。自己开始写工具并不只是造轮子，我希望把尽自己最大的努力，每一个模块都做到最细致，规则做到最好，所以这个project会持续很长的时间，而且有可能会重构很多次。
+0x02 设计这个爬虫的作用是从一个网页作为开始，爬取相关联的网页。需要注意的有几个点，一是从html中获取链接，使用">
   
     <link rel="alternative" href="/atom.xml" title="喜欢冒险探索的程序猿" type="application/atom+xml">
   
@@ -125,7 +128,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-中文测试-md" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-一个简单的爬虫" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -135,7 +138,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      中文测试.md
+      一个简单的爬虫
     </h1>
   
 
@@ -143,21 +146,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>中文测试</p>
+        <h2 id="0x01-初衷"><a href="#0x01-初衷" class="headerlink" title="0x01 初衷"></a>0x01 初衷</h2><p>最近准备开始写一些通用的自动化工具，以前也写过一些自动化的东西，不过都是用胶水把一些现成的工具粘连起来而已。自己开始写工具并不只是造轮子，我希望把尽自己最大的努力，每一个模块都做到最细致，规则做到最好，所以这个project会持续很长的时间，而且有可能会重构很多次。</p>
+<h2 id="0x02-设计"><a href="#0x02-设计" class="headerlink" title="0x02 设计"></a>0x02 设计</h2><p>这个爬虫的作用是从一个网页作为开始，爬取相关联的网页。需要注意的有几个点，一是从html中获取链接，使用有很多种方法都可以形成链接的效果，获取链接同样有很多解决方案。二是多线程问题，可以使用简单的线程池，重点在于多线程下的同步和互斥的问题。我在[[coding:pro_cus|生产者消费者问题的Python实现]]中说到过，其实链接队列就是这个模型，解析模块不停生产链接，插入queue，request模块不停从queue中获取链接，然后将html交给解析模块。解决方法可以看这篇文章。三是链接去重问题，最差的时间复杂度是O(n)，如果链接不多，内存足够，时间复杂度可以到O(1)，但是怎么在大数量级的情况下快速判断一个链接是否重复，是一个难题，但是也有现成的解决方案。另一个问题是具体的规则，同一个页面，不同的锚点可以被优化为只爬取一次。</p>
+<p>以上的三个问题，每个问题都可以作为单独一个project深入研究下去，但是那就是software engineer的范畴了。</p>
+<h2 id="0x03-简单的设计"><a href="#0x03-简单的设计" class="headerlink" title="0x03 简单的设计"></a>0x03 简单的设计</h2><p>我不喜欢啥都不说，虽然talk is cheap，show me the code。但是把要点说出来，更容易让初学者把握。我写了一个简单的实现，见<a href="https://github.com/nudtcat/simple_crawler/" target="_blank" rel="external">我的github</a></p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/default/中文测试-md/" class="archive-article-date">
-  	<time datetime="2016-09-23T13:25:31.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-23</time>
+      <a href="/default/一个简单的爬虫/" class="archive-article-date">
+  	<time datetime="2016-09-24T03:31:03.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-24</time>
 </a>
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
-	</div>
-
       
 
       <div class="clearfix"></div>
@@ -169,8 +170,8 @@
 <nav id="article-nav">
   
   
-    <a href="/default/example/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">测试</div>
+    <a href="/default/生产者消费者问题的Python实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">生产者消费者问题的Python实现</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -286,7 +287,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/测试/" style="font-size: 10px;">测试</a>
+    				<a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a>
     			</div>
     	</section>
     
