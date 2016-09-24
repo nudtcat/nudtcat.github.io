@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-09-24T03:41:08.000Z</updated>
+  <updated>2016-09-24T11:29:52.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>宽字节注入问题</title>
+    <link href="http://blog.nudtcat.org/default/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98/"/>
+    <id>http://blog.nudtcat.org/default/宽字节注入问题/</id>
+    <published>2016-09-25T01:23:19.000Z</published>
+    <updated>2016-09-24T11:29:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-宽字节"><a href="#0x00-宽字节" class="headerlink" title="0x00 宽字节"></a>0x00 宽字节</h2><p>在代码注入攻击中，宽字节问题已经是老生常谈。注意，这里的代码注入是指宽泛的代码注入：<strong>所有突破数据与代码边界，使数据注入代码段，变成可执行代码</strong>的攻击手法都可以叫代码注入，包括SQL注入和XSS。啥是宽字节呢？其实就是用多个字节表示一个字符。<br><a id="more"></a></p>
+<h2 id="0x01-另一个角度看MySQL的宽字节注入问题"><a href="#0x01-另一个角度看MySQL的宽字节注入问题" class="headerlink" title="0x01 另一个角度看MySQL的宽字节注入问题"></a>0x01 另一个角度看MySQL的宽字节注入问题</h2><p>先说说MySQL中的宽字节注入，MySQL在接受到php传来的SQL语句时，会使用MySQL设置中的character_set_client设置值进行编码。而如果character_set_client是一个宽字符集，那么可能会将SQL语句中的多个字节编码成一个字符，这样就改变了SQL语句的原意。我们对这个编码前的SQL语句稍加控制，使编码编掉一些字符，比如\，这样就能绕过php层的安全策略。说起来可能略抽象，下面打一个简单的比方。</p>
+<p>实验环境：magic_quotes_gpc=Off，php代码如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$a=$_GET[<span class="string">'a'</span>];</div><div class="line">$a=addslashes($a);</div><div class="line"><span class="keyword">print</span> <span class="string">"select * from admin where name='"</span>.$a.<span class="string">"'"</span>;</div></pre></td></tr></table></figure></p>
+<p>代码非常简单，将传入的a使用addslashes函数转义，转义掉单引号等字符。我们请求<a href="http://115.28.188.93/1.php?a=admin%df" target="_blank" rel="external">http://115.28.188.93/1.php?a=admin%df</a>‘ and 1=1 – s抓包，看到的响应如下图<br><img src="/images/0924_01.png" alt=""><br>红色框中被选中的内容就是响应的内容，这个是二进制的，可以看做是SQL语句在传给MySQL的时候的状态。这个时候，浏览器的返回时这样的(浏览器编码设置为UTF-8)<br><img src="/images/0924_02.png" alt=""></p>
+<p>在这里，浏览器设置的编码相当于MySQL的character_set_client，浏览器会对http响应的部分做编码，MySQL也是一样，这种情况下，我们发现我们请求中的单引号已经被转义了，无法形成SQL注入。我们把浏览器编码设置为gbk，再看看<br><img src="/images/0924_03.png" alt=""></p>
+<p>这个时候，我们发现\不见了，我们插入的单引号成功闭合了前面的单引号，and 1=1已经插入到了SQL语句代码部分，能影响SQL语句的逻辑。也就是说，这个时候，我们相当于把MySQL的character_set_client设置成了gbk，成功引发了宽字节的注入问题，这就是整个数据流的流向，最复杂的一部分已经弄清楚了，下面就是一些细节问题了。</p>
+<p>在admin%df’被addslashes后，结果是admin%df\’,也就是admin%df%5c%27,而将其转换为gbk编码后，%df%5c代表一个中文字符，然后就被编码成運，喜闻乐见的，我们的单引号就被插入了。</p>
+<p>(题外话：不同浏览器在得到一个没有指定编码的html响应时可能会采用不同的编码，我的Chrome和Firefox就是这样。所以，请手动设置编码方式)</p>
+<p>哪些范围会被gbk编码成汉字呢？根据gbk编码，第一个字节ascii码大于128，基本上就可以了。如果character_set_client是gb2312，能不能成功呢？理论上来说，只要\，也就是%5c在某些字符集的低位中，都是可以的，不巧，gb2312的低位范围是0xA1~0xFE，所以不可以。</p>
+<h2 id="0x03-初衷"><a href="#0x03-初衷" class="headerlink" title="0x03 初衷"></a>0x03 初衷</h2><p>我为啥写这篇文章？phithon在Freebuf上的<a href="http://www.freebuf.com/articles/web/31537.html" target="_blank" rel="external">浅析白盒审计中的字符编码及SQL注入</a>写得非常好，但是我认为在SQL语句的流向方面写得不够详细，我做了一点补充，其余内容请参看phithon大神的文章。如果有什么不明白，那多半是SQL语句的流向以及编码状态不明白，可以参考我上面浏览器编码的比喻。</p>
+<h2 id="0x04-意识"><a href="#0x04-意识" class="headerlink" title="0x04 意识"></a>0x04 意识</h2><p>玩儿英雄联盟的人都知道，意识最为重要。做安全也是如此，意识本质上是安全观。宽字节的问题，有可能改头换面出现在另一个地方，就看下次遇到的时候，谁能思考得深，看到更内在的东西了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0x00-宽字节&quot;&gt;&lt;a href=&quot;#0x00-宽字节&quot; class=&quot;headerlink&quot; title=&quot;0x00 宽字节&quot;&gt;&lt;/a&gt;0x00 宽字节&lt;/h2&gt;&lt;p&gt;在代码注入攻击中，宽字节问题已经是老生常谈。注意，这里的代码注入是指宽泛的代码注入：&lt;strong&gt;所有突破数据与代码边界，使数据注入代码段，变成可执行代码&lt;/strong&gt;的攻击手法都可以叫代码注入，包括SQL注入和XSS。啥是宽字节呢？其实就是用多个字节表示一个字符。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="SQL注入" scheme="http://blog.nudtcat.org/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="宽字节" scheme="http://blog.nudtcat.org/tags/%E5%AE%BD%E5%AD%97%E8%8A%82/"/>
+    
+      <category term="Web安全" scheme="http://blog.nudtcat.org/tags/Web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>Python装饰器</title>
