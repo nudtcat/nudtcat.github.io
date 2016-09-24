@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Python装饰器 | 喜欢冒险探索的程序猿</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0x00 语法糖装饰器是Python一个语法糖，装饰器就是在不改变原函数的基础上，在原函数前后执行一些代码，就好像在原函数上增加了一些装饰品一样。这个语法能非常方便给一个函数增加一些功能，例如权限控制，校验一个函数的输入等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python装饰器">
+<meta property="og:url" content="http://blog.nudtcat.org/default/Python装饰器/index.html">
+<meta property="og:site_name" content="喜欢冒险探索的程序猿">
+<meta property="og:description" content="0x00 语法糖装饰器是Python一个语法糖，装饰器就是在不改变原函数的基础上，在原函数前后执行一些代码，就好像在原函数上增加了一些装饰品一样。这个语法能非常方便给一个函数增加一些功能，例如权限控制，校验一个函数的输入等。">
+<meta property="og:updated_time" content="2016-09-24T03:41:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python装饰器">
+<meta name="twitter:description" content="0x00 语法糖装饰器是Python一个语法糖，装饰器就是在不改变原函数的基础上，在原函数前后执行一些代码，就好像在原函数上增加了一些装饰品一样。这个语法能非常方便给一个函数增加一些功能，例如权限控制，校验一个函数的输入等。">
+  
+    <link rel="alternative" href="/atom.xml" title="喜欢冒险探索的程序猿" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">nudtcat</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">喜欢冒险探索的程序猿</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="mail" target="_blank" href="mailto:nudtcat@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">nudtcat</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">nudtcat</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">喜欢冒险探索的程序猿</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="mail" target="_blank" href="mailto:nudtcat@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Python装饰器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python装饰器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-语法糖"><a href="#0x00-语法糖" class="headerlink" title="0x00 语法糖"></a>0x00 语法糖</h2><p>装饰器是Python一个语法糖，装饰器就是在不改变原函数的基础上，在原函数前后执行一些代码，就好像在原函数上增加了一些装饰品一样。这个语法能非常方便给一个函数增加一些功能，例如权限控制，校验一个函数的输入等。<br><a id="more"></a></p>
+<h2 id="0x01-语法原理"><a href="#0x01-语法原理" class="headerlink" title="0x01 语法原理"></a>0x01 语法原理</h2><h3 id="最简单的情况"><a href="#最简单的情况" class="headerlink" title="最简单的情况"></a>最简单的情况</h3><p>装饰一个有参数的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args,**kwargs)</span>:</span></div><div class="line">		res=func(*args,**kwargs)</div><div class="line">		<span class="keyword">print</span> <span class="string">"function "</span>+func.__name__+<span class="string">" return "</span>+str(res)</div><div class="line">		<span class="keyword">return</span> res</div><div class="line">	<span class="keyword">return</span> wrapper</div><div class="line"></div><div class="line"><span class="meta">@debug</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</div><div class="line">	<span class="keyword">print</span> sum(<span class="number">1</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">function sum return 4</div><div class="line">4</div></pre></td></tr></table></figure></p>
+<p>这里展示了装饰器最基本的使用，给sum函数添加了debug这个装饰，这个装饰器在sum函数调用之后输出了函数名和返回值方便调试。我们看一下这个语法糖的真面目。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args,**kwargs)</span>:</span></div><div class="line">		res=func(*args,**kwargs)</div><div class="line">		<span class="keyword">print</span> <span class="string">"function "</span>+func.__name__+<span class="string">" return "</span>+str(res)</div><div class="line">		<span class="keyword">return</span> res</div><div class="line">	<span class="keyword">return</span> wrapper</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</div><div class="line">	<span class="keyword">print</span> debug(sum)(<span class="number">1</span>,<span class="number">3</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">"==== function ===="</span></div><div class="line">	<span class="keyword">print</span> debug</div><div class="line">	<span class="keyword">print</span> debug(sum)</div></pre></td></tr></table></figure></p>
+<p>运行结果为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function sum return 4</div><div class="line">4</div><div class="line">==== function ====</div><div class="line">&lt;function debug at 0x1044c0de8&gt;</div><div class="line">&lt;function wrapper at 0x1044c0ed8&gt;</div></pre></td></tr></table></figure></p>
+<p>在有装饰器的时候，调用sum(1,3)相当于调用了debug(sum)(1,3)。我们来分析一下debug(sum)(1,3)这个调用。在Python中，万物皆对象，类是一个对象，方法也是一个对象。例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div></pre></td></tr></table></figure></p>
+<p>定义了一个sum方法，同时，sum也是一个对象，它的类型是函数。sum的值是一个入口在某地址的函数。sum(1,2)就是对这个函数的调用。我们回到debug(sum)(1,3)这个函数调用，首先调用了debug这个函数，它的参数是一个函数，我们根据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args,**kwargs)</span>:</span></div><div class="line">		res=func(*args,**kwargs)</div><div class="line">		<span class="keyword">print</span> <span class="string">"function "</span>+func.__name__+<span class="string">" return "</span>+str(res)</div><div class="line">		<span class="keyword">return</span> res</div><div class="line">	<span class="keyword">return</span> wrapper</div></pre></td></tr></table></figure></p>
+<p>return wrapper表示这个函数的返回值是一个函数，即debug(sum)(1,3)相当于wrapper(1,3)。wrapper(1,3)即对wrapper函数的调用。这样，把装饰器函数的定义和语法糖背后的代码结合理解，很容易理解装饰器这个概念和@debug这样的语法。</p>
+<h3 id="带参数的情况"><a href="#带参数的情况" class="headerlink" title="带参数的情况"></a>带参数的情况</h3><p>装饰器也可以带参数，这里可能比上面稍微复杂一点，如果上面的还有一点疑惑，多看两遍，在看接下来的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">is_debug=<span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(is_debug)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(func)</span>:</span></div><div class="line">		<span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">(*args,**kwargs)</span>:</span></div><div class="line">			res=func(*args,**kwargs)</div><div class="line">			<span class="keyword">if</span>(is_debug):</div><div class="line">				<span class="keyword">print</span> <span class="string">"function "</span> + func.__name__ + <span class="string">" return "</span> + str(res)</div><div class="line">			<span class="keyword">return</span> res</div><div class="line">		<span class="keyword">return</span> inner</div><div class="line">	<span class="keyword">return</span> wrapper</div><div class="line"></div><div class="line"><span class="meta">@debug(is_debug)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</div><div class="line">	<span class="keyword">print</span> sum(<span class="number">1</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure></p>
+<p>在这里，我们定义了一个全局变量is_debug来控制是否输出debug信息，这个值是装饰器的参数。感觉在装饰器定义多层函数，还有不同的参数，完全分不清啊有木有!<br>我们来看与上面等价的调用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">is_debug=<span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(is_debug)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(func)</span>:</span></div><div class="line">		<span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">(*args,**kwargs)</span>:</span></div><div class="line">			res=func(*args,**kwargs)</div><div class="line">			<span class="keyword">if</span>(is_debug):</div><div class="line">				<span class="keyword">print</span> <span class="string">"function "</span> + func.__name__ + <span class="string">" return "</span> + str(res)</div><div class="line">			<span class="keyword">return</span> res</div><div class="line">		<span class="keyword">return</span> inner</div><div class="line">	<span class="keyword">return</span> wrapper</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</div><div class="line">	<span class="keyword">print</span> debug(is_debug)(sum)(<span class="number">1</span>,<span class="number">3</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">"==== function ===="</span></div><div class="line">	<span class="keyword">print</span> debug</div><div class="line">	<span class="keyword">print</span> debug(is_debug)</div><div class="line">	<span class="keyword">print</span> debug(is_debug)(sum)</div></pre></td></tr></table></figure></p>
+<p>下面是运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function sum return 4</div><div class="line">4</div><div class="line">==== function ====</div><div class="line">&lt;function debug at 0x10b079e60&gt;</div><div class="line">&lt;function wrapper at 0x10b079f50&gt;</div><div class="line">&lt;function inner at 0x10b08e050&gt;</div></pre></td></tr></table></figure></p>
+<p>其实，看懂这个调用的方法跟上面是一样的。不再赘述，值得一提的是这里，其实debug(is_debug)返回的这个函数可以认为是另一个没有参数的装饰器，然后整个结构就上面没有参数的情况一样了。这个新的装饰器的参数是函数，即debug(is_debug)(sum)，然后返回一个参数是<em>args,*</em>kwargs的函数，再调用这个函数，参数为1，3。即完成整个调用。</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/default/Python装饰器/" class="archive-article-date">
+  	<time datetime="2016-09-24T03:36:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-24</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装饰器/">装饰器</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/default/一个简单的爬虫/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一个简单的爬虫</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 nudtcat
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
