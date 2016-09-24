@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://blog.nudtcat.org/images/0925_04.png">
 <meta property="og:image" content="http://blog.nudtcat.org/images/0925_05.png">
 <meta property="og:image" content="http://blog.nudtcat.org/images/0925_06.jpg">
-<meta property="og:updated_time" content="2016-09-24T11:46:22.000Z">
+<meta property="og:updated_time" content="2016-09-24T11:47:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从一个简单的RFID安全事件说起">
 <meta name="twitter:description" content="0x01 know it学校新增了一个微信洗衣系统，用起来相当简单，首先，在系统的微信公众号上注册一个账户，账户是使用openid作为cookie，openid是微信生成的，只有在关注了公众号的时候才会产生。openid由几个因素决定，一个是公众号的appid，另一个是关注者的微信id。openid的作用就是让微信公众号的开发者唯一标识一个关注者。然后，将账户与任一一张卡绑定起来(我们学校有水卡和">
@@ -150,8 +150,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="0x01-know-it"><a href="#0x01-know-it" class="headerlink" title="0x01 know it"></a>0x01 know it</h2><p>学校新增了一个微信洗衣系统，用起来相当简单，首先，在系统的微信公众号上注册一个账户，账户是使用openid作为cookie，openid是微信生成的，只有在关注了公众号的时候才会产生。openid由几个因素决定，一个是公众号的appid，另一个是关注者的微信id。openid的作用就是让微信公众号的开发者唯一标识一个关注者。然后，将账户与任一一张卡绑定起来(我们学校有水卡和一卡通两张卡)。洗衣系统的充值使用微信支付，余额跟着微信走。</p>
-<p>也就是说，整个结构就是线上存着你的各种信息以及余额，怎么去使用余额洗衣呢？就依靠你手上的卡，这张卡与系统进行了绑定，拿到卡，就拿到了系统的通行证。洗衣的时候拿着卡在洗衣机终端上刷一下，即可验证身份，使用余额。</p>
+        <h2 id="0x01-know-it"><a href="#0x01-know-it" class="headerlink" title="0x01 know it"></a>0x01 know it</h2><p>学校新增了一个微信洗衣系统，用起来相当简单，首先，在系统的微信公众号上注册一个账户，账户是使用openid作为cookie，openid是微信生成的，只有在关注了公众号的时候才会产生。openid由几个因素决定，一个是公众号的appid，另一个是关注者的微信id。openid的作用就是让微信公众号的开发者唯一标识一个关注者。然后，将账户与任一一张卡绑定起来(我们学校有水卡和一卡通两张卡)。洗衣系统的充值使用微信支付，余额跟着微信走。<br><a id="more"></a><br>也就是说，整个结构就是线上存着你的各种信息以及余额，怎么去使用余额洗衣呢？就依靠你手上的卡，这张卡与系统进行了绑定，拿到卡，就拿到了系统的通行证。洗衣的时候拿着卡在洗衣机终端上刷一下，即可验证身份，使用余额。</p>
 <h2 id="0x02-key-point"><a href="#0x02-key-point" class="headerlink" title="0x02 key point"></a>0x02 key point</h2><p>那么卡与系统是怎么绑定的呢？在系统中，每个账户都可以绑定一个物理卡ID，如图所示：<img src="/images/0925_01.png" alt=""><br>当然，普通人肯定不知道一张卡的物理卡ID是多少，于是，洗衣机终端就承担了这个功能。当一张未绑定的卡去刷洗衣机终端时，终端显示如下</p>
 <p><img src="/images/0925_02.png" alt=""></p>
 <p>然后只需要在系统中绑定这个物理卡号即可。绑定后正常使用的照片如下图<img src="/images/0925_03.png" alt=""></p>
