@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-09-24T11:56:32.000Z</updated>
+  <updated>2016-09-28T03:12:02.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>关于信任的反思</title>
-    <link href="http://blog.nudtcat.org/default/%E5%85%B3%E4%BA%8E%E4%BF%A1%E4%BB%BB%E7%9A%84%E5%8F%8D%E6%80%9D/"/>
-    <id>http://blog.nudtcat.org/default/关于信任的反思/</id>
+    <link href="http://blog.nudtcat.org/Chat/%E5%85%B3%E4%BA%8E%E4%BF%A1%E4%BB%BB%E7%9A%84%E5%8F%8D%E6%80%9D/"/>
+    <id>http://blog.nudtcat.org/Chat/关于信任的反思/</id>
     <published>2016-09-25T11:54:22.000Z</published>
-    <updated>2016-09-24T11:56:32.000Z</updated>
+    <updated>2016-09-28T03:12:02.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x01-信任"><a href="#0x01-信任" class="headerlink" title="0x01 信任"></a>0x01 信任</h2><p>很多安全事件的问题都出现在信任上，上层模块对底层模块的信任，人对软件的信任，人对人的信任，都是安全问题频发的地方。<br><a id="more"></a></p>
 <h2 id="0x02-被证实的信任危机"><a href="#0x02-被证实的信任危机" class="headerlink" title="0x02 被证实的信任危机"></a>0x02 被证实的信任危机</h2><ul>
@@ -39,6 +39,8 @@
     
     </summary>
     
+      <category term="杂谈" scheme="http://blog.nudtcat.org/categories/Chat/"/>
+    
     
       <category term="安全" scheme="http://blog.nudtcat.org/tags/%E5%AE%89%E5%85%A8/"/>
     
@@ -50,10 +52,10 @@
   
   <entry>
     <title>从一个简单的RFID安全事件说起</title>
-    <link href="http://blog.nudtcat.org/default/%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84RFID%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E8%AF%B4%E8%B5%B7/"/>
-    <id>http://blog.nudtcat.org/default/从一个简单的RFID安全事件说起/</id>
+    <link href="http://blog.nudtcat.org/RFID/%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84RFID%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E8%AF%B4%E8%B5%B7/"/>
+    <id>http://blog.nudtcat.org/RFID/从一个简单的RFID安全事件说起/</id>
     <published>2016-09-25T04:41:49.000Z</published>
-    <updated>2016-09-24T11:48:21.000Z</updated>
+    <updated>2016-09-28T01:43:11.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x01-know-it"><a href="#0x01-know-it" class="headerlink" title="0x01 know it"></a>0x01 know it</h2><p>学校新增了一个微信洗衣系统，用起来相当简单，首先，在系统的微信公众号上注册一个账户，账户是使用openid作为cookie，openid是微信生成的，只有在关注了公众号的时候才会产生。openid由几个因素决定，一个是公众号的appid，另一个是关注者的微信id。openid的作用就是让微信公众号的开发者唯一标识一个关注者。然后，将账户与任一一张卡绑定起来(我们学校有水卡和一卡通两张卡)。洗衣系统的充值使用微信支付，余额跟着微信走。<br><a id="more"></a><br>也就是说，整个结构就是线上存着你的各种信息以及余额，怎么去使用余额洗衣呢？就依靠你手上的卡，这张卡与系统进行了绑定，拿到卡，就拿到了系统的通行证。洗衣的时候拿着卡在洗衣机终端上刷一下，即可验证身份，使用余额。</p>
 <h2 id="0x02-key-point"><a href="#0x02-key-point" class="headerlink" title="0x02 key point"></a>0x02 key point</h2><p>那么卡与系统是怎么绑定的呢？在系统中，每个账户都可以绑定一个物理卡ID，如图所示：<img src="/images/0925_01.png" alt=""><br>当然，普通人肯定不知道一张卡的物理卡ID是多少，于是，洗衣机终端就承担了这个功能。当一张未绑定的卡去刷洗衣机终端时，终端显示如下</p>
@@ -81,6 +83,8 @@
     
     </summary>
     
+      <category term="RFID" scheme="http://blog.nudtcat.org/categories/RFID/"/>
+    
     
       <category term="RFID" scheme="http://blog.nudtcat.org/tags/RFID/"/>
     
@@ -90,10 +94,10 @@
   
   <entry>
     <title>CRLF注入</title>
-    <link href="http://blog.nudtcat.org/default/CRLF%E6%B3%A8%E5%85%A5/"/>
-    <id>http://blog.nudtcat.org/default/CRLF注入/</id>
+    <link href="http://blog.nudtcat.org/WebSecurity/CRLF%E6%B3%A8%E5%85%A5/"/>
+    <id>http://blog.nudtcat.org/WebSecurity/CRLF注入/</id>
     <published>2016-09-25T02:33:16.000Z</published>
-    <updated>2016-09-24T11:35:39.000Z</updated>
+    <updated>2016-09-28T03:13:10.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h2><p>在HTTP协议中，HTTP请求与响应的各个字段之间的分隔符为\r\n，即CRLF。如果我们能在HTTP<strong>响应</strong>部分注入CRLF，并且加入自己的一部分代码，浏览器就会接受并且解析HTTP响应，完成我们想要的功能。<br><a id="more"></a></p>
 <h2 id="0x02-危害"><a href="#0x02-危害" class="headerlink" title="0x02 危害"></a>0x02 危害</h2><p>能注入HTTP响应部分，我们能干啥呢？HTTP响应分为head部分和body部分，head部分各个字段之间的分隔是\r\n，head与body的分隔是\r\n。我们可以注入到body中，加入javascript代码，形成xss攻击。只要能注入代码到body部分，所有在浏览器层面的攻击都能实行。</p>
@@ -108,6 +112,8 @@
     
     </summary>
     
+      <category term="Web安全" scheme="http://blog.nudtcat.org/categories/WebSecurity/"/>
+    
     
       <category term="Web安全" scheme="http://blog.nudtcat.org/tags/Web%E5%AE%89%E5%85%A8/"/>
     
@@ -115,10 +121,10 @@
   
   <entry>
     <title>宽字节注入问题</title>
-    <link href="http://blog.nudtcat.org/default/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98/"/>
-    <id>http://blog.nudtcat.org/default/宽字节注入问题/</id>
+    <link href="http://blog.nudtcat.org/WebSecurity/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98/"/>
+    <id>http://blog.nudtcat.org/WebSecurity/宽字节注入问题/</id>
     <published>2016-09-25T01:23:19.000Z</published>
-    <updated>2016-09-24T11:29:52.000Z</updated>
+    <updated>2016-09-28T03:12:19.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x00-宽字节"><a href="#0x00-宽字节" class="headerlink" title="0x00 宽字节"></a>0x00 宽字节</h2><p>在代码注入攻击中，宽字节问题已经是老生常谈。注意，这里的代码注入是指宽泛的代码注入：<strong>所有突破数据与代码边界，使数据注入代码段，变成可执行代码</strong>的攻击手法都可以叫代码注入，包括SQL注入和XSS。啥是宽字节呢？其实就是用多个字节表示一个字符。<br><a id="more"></a></p>
 <h2 id="0x01-另一个角度看MySQL的宽字节注入问题"><a href="#0x01-另一个角度看MySQL的宽字节注入问题" class="headerlink" title="0x01 另一个角度看MySQL的宽字节注入问题"></a>0x01 另一个角度看MySQL的宽字节注入问题</h2><p>先说说MySQL中的宽字节注入，MySQL在接受到php传来的SQL语句时，会使用MySQL设置中的character_set_client设置值进行编码。而如果character_set_client是一个宽字符集，那么可能会将SQL语句中的多个字节编码成一个字符，这样就改变了SQL语句的原意。我们对这个编码前的SQL语句稍加控制，使编码编掉一些字符，比如\，这样就能绕过php层的安全策略。说起来可能略抽象，下面打一个简单的比方。</p>
@@ -139,6 +145,8 @@
     
     </summary>
     
+      <category term="Web安全" scheme="http://blog.nudtcat.org/categories/WebSecurity/"/>
+    
     
       <category term="Web安全" scheme="http://blog.nudtcat.org/tags/Web%E5%AE%89%E5%85%A8/"/>
     
@@ -150,10 +158,10 @@
   
   <entry>
     <title>Python装饰器</title>
-    <link href="http://blog.nudtcat.org/default/Python%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
-    <id>http://blog.nudtcat.org/default/Python装饰器/</id>
+    <link href="http://blog.nudtcat.org/Python/Python%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
+    <id>http://blog.nudtcat.org/Python/Python装饰器/</id>
     <published>2016-09-24T03:36:54.000Z</published>
-    <updated>2016-09-24T03:41:08.000Z</updated>
+    <updated>2016-09-28T03:13:23.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x00-语法糖"><a href="#0x00-语法糖" class="headerlink" title="0x00 语法糖"></a>0x00 语法糖</h2><p>装饰器是Python一个语法糖，装饰器就是在不改变原函数的基础上，在原函数前后执行一些代码，就好像在原函数上增加了一些装饰品一样。这个语法能非常方便给一个函数增加一些功能，例如权限控制，校验一个函数的输入等。<br><a id="more"></a></p>
 <h2 id="0x01-语法原理"><a href="#0x01-语法原理" class="headerlink" title="0x01 语法原理"></a>0x01 语法原理</h2><h3 id="最简单的情况"><a href="#最简单的情况" class="headerlink" title="最简单的情况"></a>最简单的情况</h3><p>装饰一个有参数的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args,**kwargs)</span>:</span></div><div class="line">		res=func(*args,**kwargs)</div><div class="line">		<span class="keyword">print</span> <span class="string">"function "</span>+func.__name__+<span class="string">" return "</span>+str(res)</div><div class="line">		<span class="keyword">return</span> res</div><div class="line">	<span class="keyword">return</span> wrapper</div><div class="line"></div><div class="line"><span class="meta">@debug</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</div><div class="line">	<span class="keyword">print</span> sum(<span class="number">1</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure></p>
@@ -175,6 +183,8 @@
     
     </summary>
     
+      <category term="Python" scheme="http://blog.nudtcat.org/categories/Python/"/>
+    
     
       <category term="Python" scheme="http://blog.nudtcat.org/tags/Python/"/>
     
@@ -184,10 +194,10 @@
   
   <entry>
     <title>一个简单的爬虫</title>
-    <link href="http://blog.nudtcat.org/default/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%88%AC%E8%99%AB/"/>
-    <id>http://blog.nudtcat.org/default/一个简单的爬虫/</id>
+    <link href="http://blog.nudtcat.org/Python/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%88%AC%E8%99%AB/"/>
+    <id>http://blog.nudtcat.org/Python/一个简单的爬虫/</id>
     <published>2016-09-24T03:31:03.000Z</published>
-    <updated>2016-09-24T03:37:25.000Z</updated>
+    <updated>2016-09-28T03:12:46.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x01-初衷"><a href="#0x01-初衷" class="headerlink" title="0x01 初衷"></a>0x01 初衷</h2><p>最近准备开始写一些通用的自动化工具，以前也写过一些自动化的东西，不过都是用胶水把一些现成的工具粘连起来而已。自己开始写工具并不只是造轮子，我希望把尽自己最大的努力，每一个模块都做到最细致，规则做到最好，所以这个project会持续很长的时间，而且有可能会重构很多次。<br><a id="more"></a></p>
 <h2 id="0x02-设计"><a href="#0x02-设计" class="headerlink" title="0x02 设计"></a>0x02 设计</h2><p>这个爬虫的作用是从一个网页作为开始，爬取相关联的网页。需要注意的有几个点，一是从html中获取链接，使用有很多种方法都可以形成链接的效果，获取链接同样有很多解决方案。二是多线程问题，可以使用简单的线程池，重点在于多线程下的同步和互斥的问题。我在<a href="http://blog.nudtcat.org/default/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98%E7%9A%84Python%E5%AE%9E%E7%8E%B0/">生产者消费者问题的Python实现</a>中说到过，其实链接队列就是这个模型，解析模块不停生产链接，插入queue，request模块不停从queue中获取链接，然后将html交给解析模块。解决方法可以看这篇文章。三是链接去重问题，最差的时间复杂度是O(n)，如果链接不多，内存足够，时间复杂度可以到O(1)，但是怎么在大数量级的情况下快速判断一个链接是否重复，是一个难题，但是也有现成的解决方案。另一个问题是具体的规则，同一个页面，不同的锚点可以被优化为只爬取一次。</p>
@@ -201,6 +211,8 @@
     
     </summary>
     
+      <category term="Python" scheme="http://blog.nudtcat.org/categories/Python/"/>
+    
     
       <category term="爬虫" scheme="http://blog.nudtcat.org/tags/%E7%88%AC%E8%99%AB/"/>
     
@@ -208,10 +220,10 @@
   
   <entry>
     <title>生产者消费者问题的Python实现</title>
-    <link href="http://blog.nudtcat.org/default/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98%E7%9A%84Python%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://blog.nudtcat.org/default/生产者消费者问题的Python实现/</id>
+    <link href="http://blog.nudtcat.org/Python/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98%E7%9A%84Python%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://blog.nudtcat.org/Python/生产者消费者问题的Python实现/</id>
     <published>2016-09-24T03:13:48.000Z</published>
-    <updated>2016-09-24T03:34:42.000Z</updated>
+    <updated>2016-09-28T03:12:33.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x00-背景知识"><a href="#0x00-背景知识" class="headerlink" title="0x00 背景知识"></a>0x00 背景知识</h2><p>生产者和消费者是一个常见的问题，它的模型是多个生产者在生产产品，同时多个消费者消费产品，但是仓库容量是有限的，所以当仓库满了生产者需要休眠，而当仓库空了消费者需要唤醒生产者。这里面涉及的问题有互斥和同步。</p>
 <h2 id="0x01-一种解决方法"><a href="#0x01-一种解决方法" class="headerlink" title="0x01 一种解决方法"></a>0x01 一种解决方法</h2><p>可以使用锁来负责互斥，使用threading.Condition来做同步。threading的完整用法见<a href="https://docs.python.org/2/library/threading.html" target="_blank" rel="external">官方文档</a>，Condition的完整用法见<a href="https://docs.python.org/2/library/threading.html#condition-objects" target="_blank" rel="external">Condition的描述</a>。简单来说，Condition内置了锁，当调用acquire()方法时，自动上锁，release()释放锁。wait()方法会释放锁后阻塞程序，直到被notify()方法唤醒。Talk is cheap, this is the code.<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="keyword">import</span> random</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">warehouse = []</div><div class="line">max_num = <span class="number">10</span></div><div class="line">condition = threading.Condition()</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">		threading.Thread.__init__(self)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">		<span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">			condition.acquire()</div><div class="line">			<span class="keyword">if</span> len(warehouse) == max_num:</div><div class="line">				<span class="keyword">print</span> <span class="string">"Warehouse is full"</span></div><div class="line">				condition.wait()  <span class="comment"># Release the lock</span></div><div class="line">				<span class="keyword">print</span> <span class="string">"Producer is notified by consumer"</span></div><div class="line">			<span class="keyword">else</span>:</div><div class="line">				warehouse.append(<span class="number">1</span>)</div><div class="line">				<span class="keyword">print</span> <span class="string">"Producer is working, NUM: "</span> + str(len(warehouse))</div><div class="line">			condition.notify()</div><div class="line">			condition.release()</div><div class="line">			time.sleep(random.random())</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">		threading.Thread.__init__(self)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">		<span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">			condition.acquire()</div><div class="line">			<span class="keyword">if</span> len(warehouse) == <span class="number">0</span>:</div><div class="line">				<span class="keyword">print</span> <span class="string">"Warehouse is empty"</span></div><div class="line">				condition.wait()</div><div class="line">				<span class="keyword">print</span> <span class="string">"Consumer is notified by producer"</span></div><div class="line">			<span class="keyword">else</span>:</div><div class="line">				warehouse.pop()</div><div class="line">				<span class="keyword">print</span> <span class="string">"Consumer is working, NUM: "</span> + str(len(warehouse))</div><div class="line">			condition.notify()</div><div class="line">			condition.release()</div><div class="line">			time.sleep(random.random())</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">	c_list = []</div><div class="line">	p_list = []</div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">		p = ProducerThread()</div><div class="line">		p_list.append(p)</div><div class="line">		p.start()</div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">6</span>):</div><div class="line">		c = ConsumerThread()</div><div class="line">		c_list.append(c)</div><div class="line">		c.start()</div></pre></td></tr></table></figure></p>
@@ -230,6 +242,8 @@
     
     </summary>
     
+      <category term="Python" scheme="http://blog.nudtcat.org/categories/Python/"/>
+    
     
       <category term="Python" scheme="http://blog.nudtcat.org/tags/Python/"/>
     
@@ -239,10 +253,10 @@
   
   <entry>
     <title>珍惜大学仅剩的一年</title>
-    <link href="http://blog.nudtcat.org/default/%E7%8F%8D%E6%83%9C%E5%A4%A7%E5%AD%A6%E4%BB%85%E5%89%A9%E7%9A%84%E4%B8%80%E5%B9%B4/"/>
-    <id>http://blog.nudtcat.org/default/珍惜大学仅剩的一年/</id>
+    <link href="http://blog.nudtcat.org/Chat/%E7%8F%8D%E6%83%9C%E5%A4%A7%E5%AD%A6%E4%BB%85%E5%89%A9%E7%9A%84%E4%B8%80%E5%B9%B4/"/>
+    <id>http://blog.nudtcat.org/Chat/珍惜大学仅剩的一年/</id>
     <published>2016-09-23T14:15:59.000Z</published>
-    <updated>2016-09-24T03:34:33.000Z</updated>
+    <updated>2016-09-28T03:12:57.000Z</updated>
     
     <content type="html"><![CDATA[<p>珍惜最后一年的大学生活</p>
 <ul>
@@ -266,6 +280,8 @@
 &lt;li&gt;来一次冒险(骑行||徒步)
     
     </summary>
+    
+      <category term="杂谈" scheme="http://blog.nudtcat.org/categories/Chat/"/>
     
     
       <category term="大学生活" scheme="http://blog.nudtcat.org/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
