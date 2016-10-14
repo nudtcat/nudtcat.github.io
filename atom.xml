@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-10-07T13:10:36.000Z</updated>
+  <updated>2016-10-14T03:23:48.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>uri提取正则表达式</title>
+    <link href="http://blog.nudtcat.org/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/uri%E6%8F%90%E5%8F%96%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://blog.nudtcat.org/正则表达式/uri提取正则表达式/</id>
+    <published>2016-10-13T13:33:05.000Z</published>
+    <updated>2016-10-14T03:23:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>uri的格式多种多样，经常需要校验uri或者分析uri提取各部分，下面提供一个自己写的正则表达式来提取uri，我用它来分析扫描器中输入的或者爬取到的uri，优先提取，由于水平有限，未能完全校验uri是否合法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">url_parse_re = <span class="string">r"^(\w*):\/\/(?:([^:]*)?(?::(.*))?@)?([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$"</span></div><div class="line"><span class="string">"""</span></div><div class="line">^(\w*):\/\/</div><div class="line">(?:       ([^:]*)?(?::(.*))?       @)?</div><div class="line">([0-9.\-A-Za-z]+)</div><div class="line">(?::(\d+))?</div><div class="line">(?:\/([^?#]*))?</div><div class="line">(?:\?([^#]*))?</div><div class="line">(?:#(.*))?$</div><div class="line"></div><div class="line">"""</div><div class="line">testcase = <span class="string">"protocol://username:password@www.sample.com:80/path.php?id=1#hash"</span></div><div class="line"></div><div class="line">r = re.compile(url_parse_re)</div><div class="line">str = re.match(r, testcase)</div><div class="line"><span class="keyword">if</span> str != <span class="keyword">None</span>:</div><div class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">9</span>):</div><div class="line">		<span class="keyword">print</span> x, str.group(x)</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>下面是简略分析：</p>
+<ul>
+<li><code>?:</code>不捕获匹配文本，也不给它分配组和组号</li>
+<li><code>^(\w*):\/\/</code>:匹配protocol://，例如<a href="http://,ftp://" target="_blank" rel="external">http://,ftp://</a></li>
+<li><code>(?:       ([^:]*)?(?::(.*))?       @)?</code>匹配用户名密码部分</li>
+<li><code>([0-9.\-A-Za-z]+)</code>:匹配hostname部分</li>
+<li><code>(?::(\d+))?</code>: 匹配端口</li>
+<li><code>(?:\/([^?#]*))?</code>匹配路径</li>
+<li><code>(?:\?([^#]*))?</code>匹配请求参数</li>
+<li><p><code>(?:#(.*))?$</code>匹配锚点</p>
+<p>优点是对于不同的uri，各部分所在的group下标不变。例如group(4)是hostname，那么不管uri包不包含username和password，group(4)始终是hostname。  </p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;uri的格式多种多样，经常需要校验uri或者分析uri提取各部分，下面提供一个自己写的正则表达式来提取uri，我用它来分析扫描器中输入的或者爬取到的uri，优先提取，由于水平有限，未能完全校验uri是否合法。&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#!/usr/bin/env python&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# -*- coding:utf-8 -*-&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; re&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;url_parse_re = &lt;span class=&quot;string&quot;&gt;r&quot;^(\w*):\/\/(?:([^:]*)?(?::(.*))?@)?([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&quot;&quot;&quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;^(\w*):\/\/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;(?:       ([^:]*)?(?::(.*))?       @)?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;([0-9.\-A-Za-z]+)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;(?::(\d+))?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;(?:\/([^?#]*))?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;(?:\?([^#]*))?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;(?:#(.*))?$&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;testcase = &lt;span class=&quot;string&quot;&gt;&quot;protocol://username:password@www.sample.com:80/path.php?id=1#hash&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;r = re.compile(url_parse_re)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;str = re.match(r, testcase)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; str != &lt;span class=&quot;keyword&quot;&gt;None&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(&lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; x, str.group(x)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="正则表达式" scheme="http://blog.nudtcat.org/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+    
+      <category term="正则表达式" scheme="http://blog.nudtcat.org/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>RFID杂谈</title>
@@ -77,11 +114,11 @@
       <category term="杂谈" scheme="http://blog.nudtcat.org/categories/Chat/"/>
     
     
-      <category term="安全" scheme="http://blog.nudtcat.org/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="update" scheme="http://blog.nudtcat.org/tags/update/"/>
     
       <category term="信任" scheme="http://blog.nudtcat.org/tags/%E4%BF%A1%E4%BB%BB/"/>
+    
+      <category term="安全" scheme="http://blog.nudtcat.org/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   

@@ -131,6 +131,63 @@
       <div class="body-wrap">
         
   
+    <article id="post-uri提取正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/正则表达式/uri提取正则表达式/">uri提取正则表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>uri的格式多种多样，经常需要校验uri或者分析uri提取各部分，下面提供一个自己写的正则表达式来提取uri，我用它来分析扫描器中输入的或者爬取到的uri，优先提取，由于水平有限，未能完全校验uri是否合法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">url_parse_re = <span class="string">r"^(\w*):\/\/(?:([^:]*)?(?::(.*))?@)?([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$"</span></div><div class="line"><span class="string">"""</div><div class="line">^(\w*):\/\/</div><div class="line">(?:       ([^:]*)?(?::(.*))?       @)?</div><div class="line">([0-9.\-A-Za-z]+)</div><div class="line">(?::(\d+))?</div><div class="line">(?:\/([^?#]*))?</div><div class="line">(?:\?([^#]*))?</div><div class="line">(?:#(.*))?$</div><div class="line"></div><div class="line">"""</span></div><div class="line">testcase = <span class="string">"protocol://username:password@www.sample.com:80/path.php?id=1#hash"</span></div><div class="line"></div><div class="line">r = re.compile(url_parse_re)</div><div class="line">str = re.match(r, testcase)</div><div class="line"><span class="keyword">if</span> str != <span class="keyword">None</span>:</div><div class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">9</span>):</div><div class="line">		<span class="keyword">print</span> x, str.group(x)</div></pre></td></tr></table></figure></p>
+        <p class="article-more-link">
+          <a  href="/正则表达式/uri提取正则表达式/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/正则表达式/uri提取正则表达式/" class="archive-article-date">
+  	<time datetime="2016-10-13T13:33:05.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/正则表达式/">正则表达式</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-RFID杂谈" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -737,7 +794,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RFID/" style="font-size: 20px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 20px;">安全</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
+    				<a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RFID/" style="font-size: 20px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 20px;">安全</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
     			</div>
     	</section>
     
