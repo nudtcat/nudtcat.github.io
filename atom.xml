@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-10-14T03:23:48.000Z</updated>
+  <updated>2016-11-08T10:56:37.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SWPU CTF writeup</title>
+    <link href="http://blog.nudtcat.org/CTF/SWPU-CTF-writeup/"/>
+    <id>http://blog.nudtcat.org/CTF/SWPU-CTF-writeup/</id>
+    <published>2016-10-28T10:53:07.000Z</published>
+    <updated>2016-11-08T10:56:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-概括"><a href="#0x00-概括" class="headerlink" title="0x00 概括"></a>0x00 概括</h2><p>这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。</p>
+<p>比赛结果当然不太好，排名42。</p>
+<p>我按照顺序题目分类写写writeup吧。</p>
+<a id="more"></a>
+<h2 id="0x01-MISC-隐写题"><a href="#0x01-MISC-隐写题" class="headerlink" title="0x01 MISC 隐写题"></a>0x01 MISC 隐写题</h2><h3 id="做出的"><a href="#做出的" class="headerlink" title="做出的"></a>做出的</h3><h4 id="MISC2-150分"><a href="#MISC2-150分" class="headerlink" title="MISC2 150分"></a>MISC2 150分</h4><p>先从MISC2开始吧(并没有MISC1)。文件是一段流量的抓包，使用wireshark提取文件，其中有一个请求flag.zip的HTTP请求，提取flag.zip，解压得到一个ce.txt文件。大致如下图所示<br><img src="/images/161028_01.png" alt=""><br>第一次打CTF，不太熟悉套路，看了好久才发现可能是RGB值。行数为98457=887*111，可能就是长宽了。用Python PIL写了个脚本，图片还原如下<br><img src="/images/161028_02.bmp" alt=""></p>
+<h4 id="MISC3-100分"><a href="#MISC3-100分" class="headerlink" title="MISC3 100分"></a>MISC3 100分</h4><p>MISC3是一个图片，利用Google搜图搜到原图，对比发现最后增加了一串字符，OZRGW4L3OVVUG22TL53HEZDVPJ2HKY2DKZIVQVTVOZ5HKY3LOJ3HIWSEKVBFIR2ZKNVXMY3LOR3H2===，看到等号应该想到base64，看到三个等号应该想到不是base64。实际上是base32编码，解码得到vbkq{ukCkS_vrduztucCVQXVuvzuckrvtZDUBTGYSkvcktv}。感觉前四个应该是flag，初步怀疑是凯撒密码，后来发现ascii码的奇偶不同，位移方向不同，写个脚本得到flag。</p>
+<h4 id="MISC4-100分"><a href="#MISC4-100分" class="headerlink" title="MISC4 100分"></a>MISC4 100分</h4><p>fuck.html，长这样<br><img src="/images/161028_03.png" alt=""><br>很显然这个是jsfuck，直接运行即可查看结果，如下图<br><img src="/images/161028_04.png" alt=""><br>弹出结果为brianfuck加密，解密即可得到flag</p>
+<h2 id="0x02-Web"><a href="#0x02-Web" class="headerlink" title="0x02 Web"></a>0x02 Web</h2><h3 id="做出的-1"><a href="#做出的-1" class="headerlink" title="做出的"></a>做出的</h3><h4 id="Web-100"><a href="#Web-100" class="headerlink" title="Web 100"></a>Web 100</h4><p>这是一道文件包含方面的题目，Tips1是include.php。请求include.php，提示Tips: the parameter is file! :)查看html源码，发现upload.php，这是一道上传文件包含的题目，如果是纯上传就不会有include.php，所以上传应该限制比较死。首先利用php://filter/convert.base64-encode/resource=include拿到include.php的源码，这里有个坑，文件名不能是include.php，这不科学，但是看到源码后就知道了。base64 decode得到源码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@$file = $_GET[<span class="string">"file"</span>];</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($file))</div><div class="line">    &#123;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (preg_match(<span class="string">'/http|data|ftp|input|%00/i'</span>, $file) || strstr($file,<span class="string">".."</span>) !== <span class="keyword">FALSE</span> || strlen($file)&gt;=<span class="number">70</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"&lt;p&gt; error! &lt;/p&gt;"</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">include</span>($file.<span class="string">'.php'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>过滤了http等远程协议，不能使用php://input，不能利用%00和多个./截断。还会在文件名后面加.php后缀，而显然无法上传php文件。在这里，有两种文件可以突破限制，一种是利用zip://伪协议，另一种是phar://伪协议。zip不行，phar可以，即可拿到shell，在当前目录下有一个文件，swpu_wbe2_tips.txt，内含flag和下一道题的提示。</p>
+<h2 id="0x03-完整Writeup"><a href="#0x03-完整Writeup" class="headerlink" title="0x03 完整Writeup"></a>0x03 完整Writeup</h2><p><a href="http://bobao.360.cn/ctf/detail/173.html" target="_blank" rel="external">http://bobao.360.cn/ctf/detail/173.html</a><br><a href="http://blog.l1n3.net/writeup/swpu_ctf_2016_writeup/" target="_blank" rel="external">http://blog.l1n3.net/writeup/swpu_ctf_2016_writeup/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0x00-概括&quot;&gt;&lt;a href=&quot;#0x00-概括&quot; class=&quot;headerlink&quot; title=&quot;0x00 概括&quot;&gt;&lt;/a&gt;0x00 概括&lt;/h2&gt;&lt;p&gt;这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。&lt;/p&gt;
+&lt;p&gt;比赛结果当然不太好，排名42。&lt;/p&gt;
+&lt;p&gt;我按照顺序题目分类写写writeup吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://blog.nudtcat.org/categories/CTF/"/>
+    
+    
+      <category term="CTF" scheme="http://blog.nudtcat.org/tags/CTF/"/>
+    
+      <category term="writeup" scheme="http://blog.nudtcat.org/tags/writeup/"/>
+    
+  </entry>
   
   <entry>
     <title>uri提取正则表达式</title>
@@ -114,11 +150,11 @@
       <category term="杂谈" scheme="http://blog.nudtcat.org/categories/Chat/"/>
     
     
-      <category term="安全" scheme="http://blog.nudtcat.org/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="update" scheme="http://blog.nudtcat.org/tags/update/"/>
     
       <category term="信任" scheme="http://blog.nudtcat.org/tags/%E4%BF%A1%E4%BB%BB/"/>
+    
+      <category term="安全" scheme="http://blog.nudtcat.org/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   

@@ -4,14 +4,29 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/10 | 喜欢冒险探索的程序猿</title>
+  <title>SWPU CTF writeup | 喜欢冒险探索的程序猿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="喜欢冒险探索的程序猿">
-<meta property="og:url" content="http://blog.nudtcat.org/archives/2016/10/index.html">
+  <meta name="description" content="0x00 概括这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。
+比赛结果当然不太好，排名42。
+我按照顺序题目分类写写writeup吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SWPU CTF writeup">
+<meta property="og:url" content="http://blog.nudtcat.org/CTF/SWPU-CTF-writeup/index.html">
 <meta property="og:site_name" content="喜欢冒险探索的程序猿">
+<meta property="og:description" content="0x00 概括这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。
+比赛结果当然不太好，排名42。
+我按照顺序题目分类写写writeup吧。">
+<meta property="og:image" content="http://blog.nudtcat.org/images/161028_01.png">
+<meta property="og:image" content="http://blog.nudtcat.org/images/161028_02.bmp">
+<meta property="og:image" content="http://blog.nudtcat.org/images/161028_03.png">
+<meta property="og:image" content="http://blog.nudtcat.org/images/161028_04.png">
+<meta property="og:updated_time" content="2016-11-08T10:56:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="喜欢冒险探索的程序猿">
+<meta name="twitter:title" content="SWPU CTF writeup">
+<meta name="twitter:description" content="0x00 概括这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。
+比赛结果当然不太好，排名42。
+我按照顺序题目分类写写writeup吧。">
+<meta name="twitter:image" content="http://blog.nudtcat.org/images/161028_01.png">
   
     <link rel="alternative" href="/atom.xml" title="喜欢冒险探索的程序猿" type="application/atom+xml">
   
@@ -129,133 +144,118 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-SWPU-CTF-writeup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/CTF/SWPU-CTF-writeup/" class="archive-article-date">
-  	<time datetime="2016-10-28T10:53:07.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/CTF/SWPU-CTF-writeup/">SWPU CTF writeup</a>
+    <h1 class="article-title" itemprop="name">
+      SWPU CTF writeup
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-概括"><a href="#0x00-概括" class="headerlink" title="0x00 概括"></a>0x00 概括</h2><p>这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。</p>
+<p>比赛结果当然不太好，排名42。</p>
+<p>我按照顺序题目分类写写writeup吧。</p>
+<a id="more"></a>
+<h2 id="0x01-MISC-隐写题"><a href="#0x01-MISC-隐写题" class="headerlink" title="0x01 MISC 隐写题"></a>0x01 MISC 隐写题</h2><h3 id="做出的"><a href="#做出的" class="headerlink" title="做出的"></a>做出的</h3><h4 id="MISC2-150分"><a href="#MISC2-150分" class="headerlink" title="MISC2 150分"></a>MISC2 150分</h4><p>先从MISC2开始吧(并没有MISC1)。文件是一段流量的抓包，使用wireshark提取文件，其中有一个请求flag.zip的HTTP请求，提取flag.zip，解压得到一个ce.txt文件。大致如下图所示<br><img src="/images/161028_01.png" alt=""><br>第一次打CTF，不太熟悉套路，看了好久才发现可能是RGB值。行数为98457=887*111，可能就是长宽了。用Python PIL写了个脚本，图片还原如下<br><img src="/images/161028_02.bmp" alt=""></p>
+<h4 id="MISC3-100分"><a href="#MISC3-100分" class="headerlink" title="MISC3 100分"></a>MISC3 100分</h4><p>MISC3是一个图片，利用Google搜图搜到原图，对比发现最后增加了一串字符，OZRGW4L3OVVUG22TL53HEZDVPJ2HKY2DKZIVQVTVOZ5HKY3LOJ3HIWSEKVBFIR2ZKNVXMY3LOR3H2===，看到等号应该想到base64，看到三个等号应该想到不是base64。实际上是base32编码，解码得到vbkq{ukCkS_vrduztucCVQXVuvzuckrvtZDUBTGYSkvcktv}。感觉前四个应该是flag，初步怀疑是凯撒密码，后来发现ascii码的奇偶不同，位移方向不同，写个脚本得到flag。</p>
+<h4 id="MISC4-100分"><a href="#MISC4-100分" class="headerlink" title="MISC4 100分"></a>MISC4 100分</h4><p>fuck.html，长这样<br><img src="/images/161028_03.png" alt=""><br>很显然这个是jsfuck，直接运行即可查看结果，如下图<br><img src="/images/161028_04.png" alt=""><br>弹出结果为brianfuck加密，解密即可得到flag</p>
+<h2 id="0x02-Web"><a href="#0x02-Web" class="headerlink" title="0x02 Web"></a>0x02 Web</h2><h3 id="做出的-1"><a href="#做出的-1" class="headerlink" title="做出的"></a>做出的</h3><h4 id="Web-100"><a href="#Web-100" class="headerlink" title="Web 100"></a>Web 100</h4><p>这是一道文件包含方面的题目，Tips1是include.php。请求include.php，提示Tips: the parameter is file! :)查看html源码，发现upload.php，这是一道上传文件包含的题目，如果是纯上传就不会有include.php，所以上传应该限制比较死。首先利用php://filter/convert.base64-encode/resource=include拿到include.php的源码，这里有个坑，文件名不能是include.php，这不科学，但是看到源码后就知道了。base64 decode得到源码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@$file = $_GET[<span class="string">"file"</span>];</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($file))</div><div class="line">    &#123;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (preg_match(<span class="string">'/http|data|ftp|input|%00/i'</span>, $file) || strstr($file,<span class="string">".."</span>) !== <span class="keyword">FALSE</span> || strlen($file)&gt;=<span class="number">70</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"&lt;p&gt; error! &lt;/p&gt;"</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">include</span>($file.<span class="string">'.php'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>过滤了http等远程协议，不能使用php://input，不能利用%00和多个./截断。还会在文件名后面加.php后缀，而显然无法上传php文件。在这里，有两种文件可以突破限制，一种是利用zip://伪协议，另一种是phar://伪协议。zip不行，phar可以，即可拿到shell，在当前目录下有一个文件，swpu_wbe2_tips.txt，内含flag和下一道题的提示。</p>
+<h2 id="0x03-完整Writeup"><a href="#0x03-完整Writeup" class="headerlink" title="0x03 完整Writeup"></a>0x03 完整Writeup</h2><p><a href="http://bobao.360.cn/ctf/detail/173.html" target="_blank" rel="external">http://bobao.360.cn/ctf/detail/173.html</a><br><a href="http://blog.l1n3.net/writeup/swpu_ctf_2016_writeup/" target="_blank" rel="external">http://blog.l1n3.net/writeup/swpu_ctf_2016_writeup/</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/CTF/SWPU-CTF-writeup/" class="archive-article-date">
+  	<time datetime="2016-10-28T10:53:07.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-28</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
 	<a class="article-category-link" href="/categories/CTF/">CTF</a>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/正则表达式/uri提取正则表达式/" class="archive-article-date">
-  	<time datetime="2016-10-13T13:33:05.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/正则表达式/uri提取正则表达式/">uri提取正则表达式</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/正则表达式/uri提取正则表达式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">uri提取正则表达式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/正则表达式/">正则表达式</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/RFID/RFID杂谈/" class="archive-article-date">
-  	<time datetime="2016-10-07T11:32:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/RFID/RFID杂谈/">RFID杂谈</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFID/">RFID</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/RFID/">RFID</a>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="SWPU-CTF-writeup" data-title="SWPU CTF writeup" data-url="http://blog.nudtcat.org/CTF/SWPU-CTF-writeup/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nudtcat"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
       </div>
@@ -278,8 +278,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
