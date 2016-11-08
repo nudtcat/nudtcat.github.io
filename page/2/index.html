@@ -131,6 +131,64 @@
       <div class="body-wrap">
         
   
+    <article id="post-生产者消费者问题的Python实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Python/生产者消费者问题的Python实现/">生产者消费者问题的Python实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-背景知识"><a href="#0x00-背景知识" class="headerlink" title="0x00 背景知识"></a>0x00 背景知识</h2><p>生产者和消费者是一个常见的问题，它的模型是多个生产者在生产产品，同时多个消费者消费产品，但是仓库容量是有限的，所以当仓库满了生产者需要休眠，而当仓库空了消费者需要唤醒生产者。这里面涉及的问题有互斥和同步。</p>
+<h2 id="0x01-一种解决方法"><a href="#0x01-一种解决方法" class="headerlink" title="0x01 一种解决方法"></a>0x01 一种解决方法</h2><p>可以使用锁来负责互斥，使用threading.Condition来做同步。threading的完整用法见<a href="https://docs.python.org/2/library/threading.html">官方文档</a>，Condition的完整用法见<a href="https://docs.python.org/2/library/threading.html#condition-objects">Condition的描述</a>。简单来说，Condition内置了锁，当调用acquire()方法时，自动上锁，release()释放锁。wait()方法会释放锁后阻塞程序，直到被notify()方法唤醒。Talk is cheap, this is the code.<br>
+        <p class="article-more-link">
+          <a  href="/Python/生产者消费者问题的Python实现/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Python/生产者消费者问题的Python实现/" class="archive-article-date">
+  	<time datetime="2016-09-24T03:13:48.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-24</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/操作系统/">操作系统</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Python/">Python</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-珍惜大学仅剩的一年" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -282,7 +340,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RFID/" style="font-size: 20px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 20px;">安全</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
+    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RFID/" style="font-size: 15px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 15px;">安全</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
     			</div>
     	</section>
     
