@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-12-19T08:23:12.000Z</updated>
+  <updated>2016-12-19T09:06:18.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>scanner组件</title>
+    <link href="http://blog.nudtcat.org/WebSecurity/scanner%E7%BB%84%E4%BB%B6/"/>
+    <id>http://blog.nudtcat.org/WebSecurity/scanner组件/</id>
+    <published>2016-12-19T09:00:45.000Z</published>
+    <updated>2016-12-19T09:06:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>扫描器基本组件。每个文件可以单独使用。<a href="https://github.com/nudtcat/scanner" target="_blank" rel="external">github地址</a></p>
+<p>1-spider_domain.py用来爬取一个网站上所有链接的域名。-u指定url，-d指定爬取深度。<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">usage: 1-spider_domain.py [-h] [-u] [<span class="_">-d</span>]</div><div class="line"></div><div class="line">Spider_domain V1.0 to spider a website to get all domains</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help    show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -u , --url    url</div><div class="line">  <span class="_">-d</span> , --deep   deep to spider</div></pre></td></tr></table></figure></p>
+<p>2-domain_to_ip.py来获取域名对应的ip地址，并且把ip地址扩展一个子网。例如爬取到1.1.1.1和1.1.1.254,则1.1.1.0/24都有可能是这个企业的ip段。-s可以制定两个ip距离多少可以将这中间的ip全部看作ip段。为0-3，0为最小。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">usage: 2-domain_to_ip.py [-h] [-i] [-o] [<span class="_">-s</span>]</div><div class="line"></div><div class="line">Domain_to_ip v1.0 to query domain name to ip address and format ip address</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help     show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -i , --input   input file</div><div class="line">  -o , --out     result out file</div><div class="line">  <span class="_">-s</span> , --scope   format scope,from 0 to 3,0 means a small scope</div></pre></td></tr></table></figure></p>
+<p>3-zmap_live.py用来使用zmap扫描存活的ip。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">usage: 3-zmap_live.py [-h] [-i] [-o] [-t]</div><div class="line"></div><div class="line">Zmap_live V1.0 to scan <span class="keyword">for</span> live hosts</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help     show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -i , --input   input file</div><div class="line">  -o , --out     result out file</div><div class="line">  -t , --times   Retry <span class="built_in">times</span> <span class="keyword">in</span> <span class="keyword">case</span> zmap scan failed!</div></pre></td></tr></table></figure></p>
+<p>3-zmap_port.py用来扫描开放的端口。-l范围为1-3，代表扫描开放端口的范围大小，1为最小。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">usage: 3-zmap_port.py [-h] [-i] [-o] [-t] [<span class="_">-l</span>]</div><div class="line"></div><div class="line">Zmap_port V1.0 to scan <span class="keyword">for</span> open port</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help     show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -i , --input   input file</div><div class="line">  -o , --out     result out file</div><div class="line">  -t , --times   Retry <span class="built_in">times</span> <span class="keyword">in</span> <span class="keyword">case</span> zmap scan failed!</div><div class="line">  <span class="_">-l</span> , --level   level of ports to scan,1-3,1 means the least</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;扫描器基本组件。每个文件可以单独使用。&lt;a href=&quot;https://github.com/nudtcat/scanner&quot;&gt;github地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1-spider_domain.py用来爬取一个网站上所有链接的域名。-u指定url，-d指定爬取深度。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://blog.nudtcat.org/categories/WebSecurity/"/>
+    
+    
+      <category term="扫描器" scheme="http://blog.nudtcat.org/tags/%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>集训有感</title>

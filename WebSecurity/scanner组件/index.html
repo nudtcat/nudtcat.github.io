@@ -4,14 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Category: Web安全 | 喜欢冒险探索的程序猿</title>
+  <title>scanner组件 | 喜欢冒险探索的程序猿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="喜欢冒险探索的程序猿">
-<meta property="og:url" content="http://blog.nudtcat.org/categories/WebSecurity/index.html">
+  <meta name="description" content="扫描器基本组件。每个文件可以单独使用。github地址
+1-spider_domain.py用来爬取一个网站上所有链接的域名。-u指定url，-d指定爬取深度。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scanner组件">
+<meta property="og:url" content="http://blog.nudtcat.org/WebSecurity/scanner组件/index.html">
 <meta property="og:site_name" content="喜欢冒险探索的程序猿">
+<meta property="og:description" content="扫描器基本组件。每个文件可以单独使用。github地址
+1-spider_domain.py用来爬取一个网站上所有链接的域名。-u指定url，-d指定爬取深度。">
+<meta property="og:updated_time" content="2016-12-19T09:06:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="喜欢冒险探索的程序猿">
+<meta name="twitter:title" content="scanner组件">
+<meta name="twitter:description" content="扫描器基本组件。每个文件可以单独使用。github地址
+1-spider_domain.py用来爬取一个网站上所有链接的域名。-u指定url，-d指定爬取深度。">
   
     <link rel="alternative" href="/atom.xml" title="喜欢冒险探索的程序猿" type="application/atom+xml">
   
@@ -129,207 +136,113 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-scanner组件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/WebSecurity/scanner组件/" class="archive-article-date">
-  	<time datetime="2016-12-19T09:00:45.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/WebSecurity/scanner组件/">scanner组件</a>
+    <h1 class="article-title" itemprop="name">
+      scanner组件
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>扫描器基本组件。每个文件可以单独使用。<a href="https://github.com/nudtcat/scanner" target="_blank" rel="external">github地址</a></p>
+<p>1-spider_domain.py用来爬取一个网站上所有链接的域名。-u指定url，-d指定爬取深度。<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">usage: 1-spider_domain.py [-h] [-u] [<span class="_">-d</span>]</div><div class="line"></div><div class="line">Spider_domain V1.0 to spider a website to get all domains</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help    show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -u , --url    url</div><div class="line">  <span class="_">-d</span> , --deep   deep to spider</div></pre></td></tr></table></figure></p>
+<p>2-domain_to_ip.py来获取域名对应的ip地址，并且把ip地址扩展一个子网。例如爬取到1.1.1.1和1.1.1.254,则1.1.1.0/24都有可能是这个企业的ip段。-s可以制定两个ip距离多少可以将这中间的ip全部看作ip段。为0-3，0为最小。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">usage: 2-domain_to_ip.py [-h] [-i] [-o] [<span class="_">-s</span>]</div><div class="line"></div><div class="line">Domain_to_ip v1.0 to query domain name to ip address and format ip address</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help     show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -i , --input   input file</div><div class="line">  -o , --out     result out file</div><div class="line">  <span class="_">-s</span> , --scope   format scope,from 0 to 3,0 means a small scope</div></pre></td></tr></table></figure></p>
+<p>3-zmap_live.py用来使用zmap扫描存活的ip。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">usage: 3-zmap_live.py [-h] [-i] [-o] [-t]</div><div class="line"></div><div class="line">Zmap_live V1.0 to scan <span class="keyword">for</span> live hosts</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help     show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -i , --input   input file</div><div class="line">  -o , --out     result out file</div><div class="line">  -t , --times   Retry <span class="built_in">times</span> <span class="keyword">in</span> <span class="keyword">case</span> zmap scan failed!</div></pre></td></tr></table></figure></p>
+<p>3-zmap_port.py用来扫描开放的端口。-l范围为1-3，代表扫描开放端口的范围大小，1为最小。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">usage: 3-zmap_port.py [-h] [-i] [-o] [-t] [<span class="_">-l</span>]</div><div class="line"></div><div class="line">Zmap_port V1.0 to scan <span class="keyword">for</span> open port</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help     show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -i , --input   input file</div><div class="line">  -o , --out     result out file</div><div class="line">  -t , --times   Retry <span class="built_in">times</span> <span class="keyword">in</span> <span class="keyword">case</span> zmap scan failed!</div><div class="line">  <span class="_">-l</span> , --level   level of ports to scan,1-3,1 means the least</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/WebSecurity/scanner组件/" class="archive-article-date">
+  	<time datetime="2016-12-19T09:00:45.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-19</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/扫描器/">扫描器</a></li></ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
 	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/WebSecurity/魔术方法-CVE-2016-7124与反序列化漏洞/" class="archive-article-date">
-  	<time datetime="2016-11-11T12:15:59.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/WebSecurity/魔术方法-CVE-2016-7124与反序列化漏洞/">魔术方法,CVE-2016-7124与反序列化漏洞</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web漏洞/">Web漏洞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php漏洞/">php漏洞</a></li></ul>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/Chat/集训有感/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">集训有感</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/WebSecurity/汇文opac图书馆后门导致源码泄漏/" class="archive-article-date">
-  	<time datetime="2016-11-08T11:13:58.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/WebSecurity/汇文opac图书馆后门导致源码泄漏/">汇文opac图书馆后门导致源码泄漏</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞/">漏洞</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/WebSecurity/CRLF注入/" class="archive-article-date">
-  	<time datetime="2016-09-25T02:33:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/WebSecurity/CRLF注入/">CRLF注入</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/WebSecurity/宽字节注入问题/" class="archive-article-date">
-  	<time datetime="2016-09-25T01:23:19.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/WebSecurity/宽字节注入问题/">宽字节注入问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/宽字节/">宽字节</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="scanner组件" data-title="scanner组件" data-url="http://blog.nudtcat.org/WebSecurity/scanner组件/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nudtcat"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
 
 
       </div>
@@ -352,10 +265,10 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: true,
 		root: "/"
 	}
