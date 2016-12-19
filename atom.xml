@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-11-11T13:14:46.000Z</updated>
+  <updated>2016-12-19T08:23:12.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>集训有感</title>
+    <link href="http://blog.nudtcat.org/Chat/%E9%9B%86%E8%AE%AD%E6%9C%89%E6%84%9F/"/>
+    <id>http://blog.nudtcat.org/Chat/集训有感/</id>
+    <published>2016-12-19T08:04:57.000Z</published>
+    <updated>2016-12-19T08:23:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>回去训练了一个月，天天累成废狗🐶。又回来休整几天，有感。<br><a id="more"></a></p>
+<ul>
+<li>温水煮青蛙，生活就是温水，无论是没有压力的，还是高压力的。</li>
+<li>行动，永远不停止行动。思考在行动途中的。</li>
+<li>勤于战术，明于战略。</li>
+<li>自我驱动。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;回去训练了一个月，天天累成废狗🐶。又回来休整几天，有感。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="杂谈" scheme="http://blog.nudtcat.org/categories/Chat/"/>
+    
+    
+      <category term="大学生活" scheme="http://blog.nudtcat.org/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>魔术方法,CVE-2016-7124与反序列化漏洞</title>
