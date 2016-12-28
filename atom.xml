@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-12-19T09:06:18.000Z</updated>
+  <updated>2016-12-28T06:31:45.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP运行模式与HTTP_PROXY漏洞分析</title>
+    <link href="http://blog.nudtcat.org/WebSecurity/PHP%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%B8%8EHTTP-PROXY%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"/>
+    <id>http://blog.nudtcat.org/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/</id>
+    <published>2016-12-28T05:30:33.000Z</published>
+    <updated>2016-12-28T06:31:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-PHP的运行模式"><a href="#0x00-PHP的运行模式" class="headerlink" title="0x00 PHP的运行模式"></a>0x00 PHP的运行模式</h2><p>PHP是一个php脚本的解释器，在不同的场合下它以不同的场合运行。PHP有个SAPI (Server API) 模块来处理不同的调用。<br>常见的调用方法有以下几种：</p>
+<ul>
+<li>模块加载方式</li>
+<li>CGI模式</li>
+<li>FastCGI模式</li>
+<li>ISAPI方式</li>
+<li>CLI方式</li>
+</ul>
+<p>下面详细介绍一下<br><a id="more"></a><br>模块加载方式是比较常用的加载方式，ubuntu下libapache2-mod-php5就是适配Apache的PHP5的模块。这种情况下，PHP集成在服务器中，以同一个进程运行。</p>
+<p>CGI模式比较少见，每次请求都会创建CGI的子线程，处理完php脚本后把结果交回给HTTP服务器。</p>
+<p>FastCGI克服了CGI线程创建开销大的缺点，类似于常驻内存的CGI，使用进程池来维护CGI进程，提供解释PHP的服务。PHP使用php-fpm，即PHP FastCGI Process Manager管理进程。</p>
+<p>ISAPI方式是Windows下Apache使用的方式。</p>
+<p>CLI方式是使用命令行调用PHP使用的方式。</p>
+<p>对这方面比较陌生的同学可以参看<a href="http://article.gitos.cn/2015/Aurthur/PHP-Mod-PHP-And-Fast-CGI-Explain.html" target="_blank" rel="external">PHP填坑记之FastCGI与mod_php详解</a></p>
+<h2 id="0x01HTTP-PROXY漏洞"><a href="#0x01HTTP-PROXY漏洞" class="headerlink" title="0x01HTTP_PROXY漏洞"></a>0x01HTTP_PROXY漏洞</h2><p>这个漏洞的背景是根据RFC文档，在CGI模式中，会把HTTP请求中的头部，加上HTTP_的前缀，注册到环境变量中。</p>
+<p>另外，一个常用的设置代理方法是，在环境变量中设置http_proxy，例如wget命令的设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> http_proxy=127.0.0.1:8080 &amp;&amp; wget http://blog.nudtcat.org</div></pre></td></tr></table></figure>
+<p>如果wget组件在获取环境变量中的proxy的时候用的是HTTP_PROXY，而且攻击者在发送请求的时候在HTTP头部中加入了PROXY，那么这个PROXY会加上HTTP_的前缀，指定代理，于是，从服务器发出的请求就会从这个<br>代理通过。而Proxy的环境变量使用大写还是小写没有规定。</p>
+<h2 id="0x02-影响范围"><a href="#0x02-影响范围" class="headerlink" title="0x02 影响范围"></a>0x02 影响范围</h2><p>这个漏洞的影响范围有限，要求PHP使用CGI或者FastCGI方式启动，某个组件使用的HTTP_PROXY是大写的，而且服务器得向外发送HTTP请求。<br>幸好wget和curl都是使用的”http_proxy”，不会受影响。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0x00-PHP的运行模式&quot;&gt;&lt;a href=&quot;#0x00-PHP的运行模式&quot; class=&quot;headerlink&quot; title=&quot;0x00 PHP的运行模式&quot;&gt;&lt;/a&gt;0x00 PHP的运行模式&lt;/h2&gt;&lt;p&gt;PHP是一个php脚本的解释器，在不同的场合下它以不同的场合运行。PHP有个SAPI (Server API) 模块来处理不同的调用。&lt;br&gt;常见的调用方法有以下几种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模块加载方式&lt;/li&gt;
+&lt;li&gt;CGI模式&lt;/li&gt;
+&lt;li&gt;FastCGI模式&lt;/li&gt;
+&lt;li&gt;ISAPI方式&lt;/li&gt;
+&lt;li&gt;CLI方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面详细介绍一下&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://blog.nudtcat.org/categories/WebSecurity/"/>
+    
+    
+      <category term="PHP漏洞" scheme="http://blog.nudtcat.org/tags/PHP%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="Web安全" scheme="http://blog.nudtcat.org/tags/Web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>scanner组件</title>

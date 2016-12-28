@@ -131,6 +131,71 @@
       <div class="body-wrap">
         
   
+    <article id="post-PHP运行模式与HTTP-PROXY漏洞分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/">PHP运行模式与HTTP_PROXY漏洞分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-PHP的运行模式"><a href="#0x00-PHP的运行模式" class="headerlink" title="0x00 PHP的运行模式"></a>0x00 PHP的运行模式</h2><p>PHP是一个php脚本的解释器，在不同的场合下它以不同的场合运行。PHP有个SAPI (Server API) 模块来处理不同的调用。<br>常见的调用方法有以下几种：</p>
+<ul>
+<li>模块加载方式</li>
+<li>CGI模式</li>
+<li>FastCGI模式</li>
+<li>ISAPI方式</li>
+<li>CLI方式</li>
+</ul>
+<p>下面详细介绍一下<br>
+        <p class="article-more-link">
+          <a  href="/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/" class="archive-article-date">
+  	<time datetime="2016-12-28T05:30:33.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-28</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP漏洞/">PHP漏洞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-scanner组件" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -649,63 +714,6 @@
 
 
   
-    <article id="post-CRLF注入" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/WebSecurity/CRLF注入/">CRLF注入</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h2><p>在HTTP协议中，HTTP请求与响应的各个字段之间的分隔符为\r\n，即CRLF。如果我们能在HTTP<strong>响应</strong>部分注入CRLF，并且加入自己的一部分代码，浏览器就会接受并且解析HTTP响应，完成我们想要的功能。<br>
-        <p class="article-more-link">
-          <a  href="/WebSecurity/CRLF注入/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/WebSecurity/CRLF注入/" class="archive-article-date">
-  	<time datetime="2016-09-25T02:33:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-25</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -809,7 +817,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RFID/" style="font-size: 15px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 15px;">大学生活</a> <a href="/tags/安全/" style="font-size: 15px;">安全</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
+    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP漏洞/" style="font-size: 10px;">PHP漏洞</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RFID/" style="font-size: 15px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 15px;">大学生活</a> <a href="/tags/安全/" style="font-size: 15px;">安全</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
     			</div>
     	</section>
     

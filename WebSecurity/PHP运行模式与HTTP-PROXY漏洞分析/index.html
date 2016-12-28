@@ -4,36 +4,42 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>珍惜大学仅剩的一年 | 喜欢冒险探索的程序猿</title>
+  <title>PHP运行模式与HTTP_PROXY漏洞分析 | 喜欢冒险探索的程序猿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="珍惜最后一年的大学生活
+  <meta name="description" content="0x00 PHP的运行模式PHP是一个php脚本的解释器，在不同的场合下它以不同的场合运行。PHP有个SAPI (Server API) 模块来处理不同的调用。常见的调用方法有以下几种：
 
-写一篇优秀的毕业论文
-在大雨天跑一次步
-感受教学楼，图书馆，读几本书
-毕业旅行
-来一次冒险(骑行||徒步)">
+模块加载方式
+CGI模式
+FastCGI模式
+ISAPI方式
+CLI方式
+
+下面详细介绍一下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="珍惜大学仅剩的一年">
-<meta property="og:url" content="http://blog.nudtcat.org/Chat/珍惜大学仅剩的一年/index.html">
+<meta property="og:title" content="PHP运行模式与HTTP_PROXY漏洞分析">
+<meta property="og:url" content="http://blog.nudtcat.org/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/index.html">
 <meta property="og:site_name" content="喜欢冒险探索的程序猿">
-<meta property="og:description" content="珍惜最后一年的大学生活
+<meta property="og:description" content="0x00 PHP的运行模式PHP是一个php脚本的解释器，在不同的场合下它以不同的场合运行。PHP有个SAPI (Server API) 模块来处理不同的调用。常见的调用方法有以下几种：
 
-写一篇优秀的毕业论文
-在大雨天跑一次步
-感受教学楼，图书馆，读几本书
-毕业旅行
-来一次冒险(骑行||徒步)">
-<meta property="og:updated_time" content="2016-09-28T03:12:57.000Z">
+模块加载方式
+CGI模式
+FastCGI模式
+ISAPI方式
+CLI方式
+
+下面详细介绍一下">
+<meta property="og:updated_time" content="2016-12-28T06:31:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="珍惜大学仅剩的一年">
-<meta name="twitter:description" content="珍惜最后一年的大学生活
+<meta name="twitter:title" content="PHP运行模式与HTTP_PROXY漏洞分析">
+<meta name="twitter:description" content="0x00 PHP的运行模式PHP是一个php脚本的解释器，在不同的场合下它以不同的场合运行。PHP有个SAPI (Server API) 模块来处理不同的调用。常见的调用方法有以下几种：
 
-写一篇优秀的毕业论文
-在大雨天跑一次步
-感受教学楼，图书馆，读几本书
-毕业旅行
-来一次冒险(骑行||徒步)">
+模块加载方式
+CGI模式
+FastCGI模式
+ISAPI方式
+CLI方式
+
+下面详细介绍一下">
   
     <link rel="alternative" href="/atom.xml" title="喜欢冒险探索的程序猿" type="application/atom+xml">
   
@@ -151,7 +157,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-珍惜大学仅剩的一年" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-PHP运行模式与HTTP-PROXY漏洞分析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -161,7 +167,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      珍惜大学仅剩的一年
+      PHP运行模式与HTTP_PROXY漏洞分析
     </h1>
   
 
@@ -169,33 +175,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>珍惜最后一年的大学生活</p>
+        <h2 id="0x00-PHP的运行模式"><a href="#0x00-PHP的运行模式" class="headerlink" title="0x00 PHP的运行模式"></a>0x00 PHP的运行模式</h2><p>PHP是一个php脚本的解释器，在不同的场合下它以不同的场合运行。PHP有个SAPI (Server API) 模块来处理不同的调用。<br>常见的调用方法有以下几种：</p>
 <ul>
-<li>写一篇优秀的毕业论文</li>
-<li>在大雨天跑一次步</li>
-<li>感受教学楼，图书馆，读几本书</li>
-<li>毕业旅行</li>
-<li>来一次冒险(骑行||徒步)<a id="more"></a>
-</li>
+<li>模块加载方式</li>
+<li>CGI模式</li>
+<li>FastCGI模式</li>
+<li>ISAPI方式</li>
+<li>CLI方式</li>
 </ul>
+<p>下面详细介绍一下<br><a id="more"></a><br>模块加载方式是比较常用的加载方式，ubuntu下libapache2-mod-php5就是适配Apache的PHP5的模块。这种情况下，PHP集成在服务器中，以同一个进程运行。</p>
+<p>CGI模式比较少见，每次请求都会创建CGI的子线程，处理完php脚本后把结果交回给HTTP服务器。</p>
+<p>FastCGI克服了CGI线程创建开销大的缺点，类似于常驻内存的CGI，使用进程池来维护CGI进程，提供解释PHP的服务。PHP使用php-fpm，即PHP FastCGI Process Manager管理进程。</p>
+<p>ISAPI方式是Windows下Apache使用的方式。</p>
+<p>CLI方式是使用命令行调用PHP使用的方式。</p>
+<p>对这方面比较陌生的同学可以参看<a href="http://article.gitos.cn/2015/Aurthur/PHP-Mod-PHP-And-Fast-CGI-Explain.html" target="_blank" rel="external">PHP填坑记之FastCGI与mod_php详解</a></p>
+<h2 id="0x01HTTP-PROXY漏洞"><a href="#0x01HTTP-PROXY漏洞" class="headerlink" title="0x01HTTP_PROXY漏洞"></a>0x01HTTP_PROXY漏洞</h2><p>这个漏洞的背景是根据RFC文档，在CGI模式中，会把HTTP请求中的头部，加上HTTP_的前缀，注册到环境变量中。</p>
+<p>另外，一个常用的设置代理方法是，在环境变量中设置http_proxy，例如wget命令的设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> http_proxy=127.0.0.1:8080 &amp;&amp; wget http://blog.nudtcat.org</div></pre></td></tr></table></figure>
+<p>如果wget组件在获取环境变量中的proxy的时候用的是HTTP_PROXY，而且攻击者在发送请求的时候在HTTP头部中加入了PROXY，那么这个PROXY会加上HTTP_的前缀，指定代理，于是，从服务器发出的请求就会从这个<br>代理通过。而Proxy的环境变量使用大写还是小写没有规定。</p>
+<h2 id="0x02-影响范围"><a href="#0x02-影响范围" class="headerlink" title="0x02 影响范围"></a>0x02 影响范围</h2><p>这个漏洞的影响范围有限，要求PHP使用CGI或者FastCGI方式启动，某个组件使用的HTTP_PROXY是大写的，而且服务器得向外发送HTTP请求。<br>幸好wget和curl都是使用的”http_proxy”，不会受影响。</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/Chat/珍惜大学仅剩的一年/" class="archive-article-date">
-  	<time datetime="2016-09-23T14:15:59.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-23</time>
+      <a href="/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/" class="archive-article-date">
+  	<time datetime="2016-12-28T05:30:33.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-28</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学生活/">大学生活</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP漏洞/">PHP漏洞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/Chat/">杂谈</a>
+	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
 	</div>
 
 
@@ -207,15 +223,11 @@
   
 <nav id="article-nav">
   
-    <a href="/Python/生产者消费者问题的Python实现/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          生产者消费者问题的Python实现
-        
-      </div>
-    </a>
   
+    <a href="/WebSecurity/scanner组件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">scanner组件</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -247,7 +259,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="珍惜大学仅剩的一年" data-title="珍惜大学仅剩的一年" data-url="http://blog.nudtcat.org/Chat/珍惜大学仅剩的一年/"></div>
+	<div class="ds-thread" data-thread-key="PHP运行模式与HTTP-PROXY漏洞分析" data-title="PHP运行模式与HTTP_PROXY漏洞分析" data-url="http://blog.nudtcat.org/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
