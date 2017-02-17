@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2016-12-28T06:31:45.000Z</updated>
+  <updated>2017-02-17T06:31:18.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ysrc巡风-一款优秀的甲方资产扫描工具</title>
+    <link href="http://blog.nudtcat.org/%E5%AE%89%E5%85%A8%E8%BF%90%E7%BB%B4/ysrc%E5%B7%A1%E9%A3%8E-%E4%B8%80%E6%AC%BE%E4%BC%98%E7%A7%80%E7%9A%84%E7%94%B2%E6%96%B9%E8%B5%84%E4%BA%A7%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/"/>
+    <id>http://blog.nudtcat.org/安全运维/ysrc巡风-一款优秀的甲方资产扫描工具/</id>
+    <published>2017-02-17T05:43:29.000Z</published>
+    <updated>2017-02-17T06:31:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-介绍"><a href="#0x00-介绍" class="headerlink" title="0x00 介绍"></a>0x00 介绍</h2><p>巡风是YSRC开源的一款资产及运维漏洞管理工具。在针对YSRC做更改的时候注意遵从GPL License。</p>
+<h2 id="0x01-代码结构"><a href="#0x01-代码结构" class="headerlink" title="0x01 代码结构"></a>0x01 代码结构</h2><p>巡风包含一个Web管理模块，一个网络资产发现模块和一个漏洞监测模块。代码结构如下<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">│  Config.py  # 配置文件</div><div class="line">│  README.md  # 说明文档</div><div class="line">│  Run.bat  # Windows启动服务</div><div class="line">│  Run.py  # webserver</div><div class="line">│  Run.sh    # Linux启动服务，重新启动前需把进程先结束掉</div><div class="line">│  </div><div class="line">├─aider</div><div class="line">│      Aider.py  # 辅助验证脚本</div><div class="line">│      </div><div class="line">├─db  # 初始数据库结构</div><div class="line">│      </div><div class="line">├─masscan  # 内置编译好的Masscan程序（CentOS win64适用），需要chmod+x给执行权限（root），若无法使用请自行编译安装。 </div><div class="line">├─nascan</div><div class="line">│  │  NAScan.py # 网络资产信息抓取引擎</div><div class="line">│  │  </div><div class="line">│  ├─lib</div><div class="line">│  │      common.py 其他方法</div><div class="line">│  │      icmp.py  # ICMP发送类</div><div class="line">│  │      log.py  # 日志输出</div><div class="line">│  │      mongo.py  # 数据库连接</div><div class="line">│  │      scan.py  # 扫描与识别</div><div class="line">│  │      start.py  # 线程控制</div><div class="line">│  │      </div><div class="line">│  └─plugin</div><div class="line">│          masscan.py  # 调用Masscan脚本</div><div class="line">│          </div><div class="line">├─views</div><div class="line">│  │  View.py  # web请求处理</div><div class="line">│  │  </div><div class="line">│  ├─lib</div><div class="line">│  │      Conn.py  # 数据库公共类</div><div class="line">│  │      CreateExcel.py  # 表格处理</div><div class="line">│  │      Login.py  # 权限验证</div><div class="line">│  │      QueryLogic.py  # 查询语句解析</div><div class="line">│  │      </div><div class="line">│  ├─static #静态资源目录</div><div class="line">│  │              </div><div class="line">│  └─templates #模板文件目录</div><div class="line">│          </div><div class="line">└─vulscan</div><div class="line">    │  VulScan.py  # 漏洞检测引擎</div><div class="line">    │  </div><div class="line">    └─vuldb # 漏洞库目录</div></pre></td></tr></table></figure></p>
+<p>Run.py是*nix下的安装脚本，启动的后台脚本很多，大多数情况很难一次启动成功。注意在/var/log/xunfeng/查看日志。</p>
+<h2 id="0x02-Web模块"><a href="#0x02-Web模块" class="headerlink" title="0x02 Web模块"></a>0x02 Web模块</h2><p>Web框架是Flask，由Run.py启动，默认端口为80，主要代码在views目录下。数据库使用的是Mongodb，Web模块不多说。</p>
+<h2 id="0x03-资产发现模块"><a href="#0x03-资产发现模块" class="headerlink" title="0x03 资产发现模块"></a>0x03 资产发现模块</h2><p>巡风的定位是甲方，资产发现为每天固定时间扫描，这部分代码在nascan/NAScan.py中，如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (now_hour == int(ac_hour) <span class="keyword">and</span> now_day % int(cy_day) == <span class="number">0</span> <span class="keyword">and</span> now_date <span class="keyword">not</span> <span class="keyword">in</span> ac_data) <span class="keyword">or</span> NACHANGE[<span class="number">0</span>]:  <span class="comment"># 判断是否进入扫描时段</span></div><div class="line">               ac_data.append(now_date)</div><div class="line">               NACHANGE[<span class="number">0</span>] = <span class="number">0</span></div><div class="line">               log.write(<span class="string">'info'</span>, <span class="keyword">None</span>, <span class="number">0</span>, <span class="string">u'开始扫描'</span>)</div><div class="line">               s = start(CONFIG_INI)</div><div class="line">               s.masscan_ac = MASSCAN_AC</div><div class="line">               s.statistics = STATISTICS</div><div class="line">               s.run()</div><div class="line">           time.sleep(<span class="number">60</span>)</div></pre></td></tr></table></figure></p>
+<p>按照需要可以自行更改。</p>
+<p>如果不想用NAScan，可以使用masscan。调用masscan在nascan/plugin/masscan.py中，也可以自己按照需要使用其他扫描器，只需要仿照masscan.py再写一个即可。</p>
+<h2 id="0x04-漏洞扫描模块"><a href="#0x04-漏洞扫描模块" class="headerlink" title="0x04 漏洞扫描模块"></a>0x04 漏洞扫描模块</h2><p>上面说过，巡风的定位是甲方+运维安全问题。扫描的一般是弱口令和常见组件的高危漏洞。</p>
+<p>漏洞插件支持py脚本模式和json文件模式，py模式下需要有get_plugin_info函数和check函数，get_plugin_info函数比较重要的是keyword，确认哪些服务需要扫描。然后调用check函数，返回漏洞扫描结果。</p>
+<p>json模式下json有一些重要字段，例如，keyword，跟py模式中的keyword作用一样。plugin字段确定请求。data指定post请求的内容，analyzing指定对 HTTP response的分析，支持keyword，regex和md5。如果response中包含keyword或者满足正则表达式或者md5为指定值，则漏洞存在。</p>
+<h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>总体来说，巡风是一款不错的扫描工具，适合无力或者不值得自己开发扫描器的中小公司，稍加改造，即可适配。插件还实时保持更新，非常不错，不像某些公司开源以后就不管了，啥都没有。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0x00-介绍&quot;&gt;&lt;a href=&quot;#0x00-介绍&quot; class=&quot;headerlink&quot; title=&quot;0x00 介绍&quot;&gt;&lt;/a&gt;0x00 介绍&lt;/h2&gt;&lt;p&gt;巡风是YSRC开源的一款资产及运维漏洞管理工具。在针对YSRC做更改的时候注意遵从GPL License。&lt;/p&gt;
+&lt;h2 id=&quot;0x01-代码结构&quot;&gt;&lt;a href=&quot;#0x01-代码结构&quot; class=&quot;headerlink&quot; title=&quot;0x01 代码结构&quot;&gt;&lt;/a&gt;0x01 代码结构&lt;/h2&gt;&lt;p&gt;巡风包含一个Web管理模块，一个网络资产发现模块和一个漏洞监测模块。代码结构如下&lt;br&gt;
+    
+    </summary>
+    
+      <category term="安全运维" scheme="http://blog.nudtcat.org/categories/%E5%AE%89%E5%85%A8%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="甲方" scheme="http://blog.nudtcat.org/tags/%E7%94%B2%E6%96%B9/"/>
+    
+      <category term="安全运维" scheme="http://blog.nudtcat.org/tags/%E5%AE%89%E5%85%A8%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>PHP运行模式与HTTP_PROXY漏洞分析</title>
@@ -60,9 +96,9 @@
       <category term="Web安全" scheme="http://blog.nudtcat.org/categories/WebSecurity/"/>
     
     
-      <category term="PHP漏洞" scheme="http://blog.nudtcat.org/tags/PHP%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="Web安全" scheme="http://blog.nudtcat.org/tags/Web%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="PHP漏洞" scheme="http://blog.nudtcat.org/tags/PHP%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   

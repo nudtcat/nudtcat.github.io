@@ -4,22 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>宽字节注入问题 | 喜欢冒险探索的程序猿</title>
+  <title>ysrc巡风-一款优秀的甲方资产扫描工具 | 喜欢冒险探索的程序猿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00 宽字节在代码注入攻击中，宽字节问题已经是老生常谈。注意，这里的代码注入是指宽泛的代码注入：所有突破数据与代码边界，使数据注入代码段，变成可执行代码的攻击手法都可以叫代码注入，包括SQL注入和XSS。啥是宽字节呢？其实就是用多个字节表示一个字符。">
+  <meta name="description" content="0x00 介绍巡风是YSRC开源的一款资产及运维漏洞管理工具。在针对YSRC做更改的时候注意遵从GPL License。
+0x01 代码结构巡风包含一个Web管理模块，一个网络资产发现模块和一个漏洞监测模块。代码结构如下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="宽字节注入问题">
-<meta property="og:url" content="http://blog.nudtcat.org/WebSecurity/宽字节注入问题/index.html">
+<meta property="og:title" content="ysrc巡风-一款优秀的甲方资产扫描工具">
+<meta property="og:url" content="http://blog.nudtcat.org/安全运维/ysrc巡风-一款优秀的甲方资产扫描工具/index.html">
 <meta property="og:site_name" content="喜欢冒险探索的程序猿">
-<meta property="og:description" content="0x00 宽字节在代码注入攻击中，宽字节问题已经是老生常谈。注意，这里的代码注入是指宽泛的代码注入：所有突破数据与代码边界，使数据注入代码段，变成可执行代码的攻击手法都可以叫代码注入，包括SQL注入和XSS。啥是宽字节呢？其实就是用多个字节表示一个字符。">
-<meta property="og:image" content="http://blog.nudtcat.org/images/0924_01.png">
-<meta property="og:image" content="http://blog.nudtcat.org/images/0924_02.png">
-<meta property="og:image" content="http://blog.nudtcat.org/images/0924_03.png">
-<meta property="og:updated_time" content="2016-09-28T03:12:19.000Z">
+<meta property="og:description" content="0x00 介绍巡风是YSRC开源的一款资产及运维漏洞管理工具。在针对YSRC做更改的时候注意遵从GPL License。
+0x01 代码结构巡风包含一个Web管理模块，一个网络资产发现模块和一个漏洞监测模块。代码结构如下">
+<meta property="og:updated_time" content="2017-02-17T06:31:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宽字节注入问题">
-<meta name="twitter:description" content="0x00 宽字节在代码注入攻击中，宽字节问题已经是老生常谈。注意，这里的代码注入是指宽泛的代码注入：所有突破数据与代码边界，使数据注入代码段，变成可执行代码的攻击手法都可以叫代码注入，包括SQL注入和XSS。啥是宽字节呢？其实就是用多个字节表示一个字符。">
-<meta name="twitter:image" content="http://blog.nudtcat.org/images/0924_01.png">
+<meta name="twitter:title" content="ysrc巡风-一款优秀的甲方资产扫描工具">
+<meta name="twitter:description" content="0x00 介绍巡风是YSRC开源的一款资产及运维漏洞管理工具。在针对YSRC做更改的时候注意遵从GPL License。
+0x01 代码结构巡风包含一个Web管理模块，一个网络资产发现模块和一个漏洞监测模块。代码结构如下">
   
     <link rel="alternative" href="/atom.xml" title="喜欢冒险探索的程序猿" type="application/atom+xml">
   
@@ -137,7 +136,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-宽字节注入问题" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ysrc巡风-一款优秀的甲方资产扫描工具" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -147,7 +146,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      宽字节注入问题
+      ysrc巡风-一款优秀的甲方资产扫描工具
     </h1>
   
 
@@ -155,35 +154,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="0x00-宽字节"><a href="#0x00-宽字节" class="headerlink" title="0x00 宽字节"></a>0x00 宽字节</h2><p>在代码注入攻击中，宽字节问题已经是老生常谈。注意，这里的代码注入是指宽泛的代码注入：<strong>所有突破数据与代码边界，使数据注入代码段，变成可执行代码</strong>的攻击手法都可以叫代码注入，包括SQL注入和XSS。啥是宽字节呢？其实就是用多个字节表示一个字符。<br><a id="more"></a></p>
-<h2 id="0x01-另一个角度看MySQL的宽字节注入问题"><a href="#0x01-另一个角度看MySQL的宽字节注入问题" class="headerlink" title="0x01 另一个角度看MySQL的宽字节注入问题"></a>0x01 另一个角度看MySQL的宽字节注入问题</h2><p>先说说MySQL中的宽字节注入，MySQL在接受到php传来的SQL语句时，会使用MySQL设置中的character_set_client设置值进行编码。而如果character_set_client是一个宽字符集，那么可能会将SQL语句中的多个字节编码成一个字符，这样就改变了SQL语句的原意。我们对这个编码前的SQL语句稍加控制，使编码编掉一些字符，比如\，这样就能绕过php层的安全策略。说起来可能略抽象，下面打一个简单的比方。</p>
-<p>实验环境：magic_quotes_gpc=Off，php代码如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$a=$_GET[<span class="string">'a'</span>];</div><div class="line">$a=addslashes($a);</div><div class="line"><span class="keyword">print</span> <span class="string">"select * from admin where name='"</span>.$a.<span class="string">"'"</span>;</div></pre></td></tr></table></figure></p>
-<p>代码非常简单，将传入的a使用addslashes函数转义，转义掉单引号等字符。我们请求<a href="http://115.28.188.93/1.php?a=admin%df" target="_blank" rel="external">http://115.28.188.93/1.php?a=admin%df</a>‘ and 1=1 – s抓包，看到的响应如下图<br><img src="/images/0924_01.png" alt=""><br>红色框中被选中的内容就是响应的内容，这个是二进制的，可以看做是SQL语句在传给MySQL的时候的状态。这个时候，浏览器的返回时这样的(浏览器编码设置为UTF-8)<br><img src="/images/0924_02.png" alt=""></p>
-<p>在这里，浏览器设置的编码相当于MySQL的character_set_client，浏览器会对http响应的部分做编码，MySQL也是一样，这种情况下，我们发现我们请求中的单引号已经被转义了，无法形成SQL注入。我们把浏览器编码设置为gbk，再看看<br><img src="/images/0924_03.png" alt=""></p>
-<p>这个时候，我们发现\不见了，我们插入的单引号成功闭合了前面的单引号，and 1=1已经插入到了SQL语句代码部分，能影响SQL语句的逻辑。也就是说，这个时候，我们相当于把MySQL的character_set_client设置成了gbk，成功引发了宽字节的注入问题，这就是整个数据流的流向，最复杂的一部分已经弄清楚了，下面就是一些细节问题了。</p>
-<p>在admin%df’被addslashes后，结果是admin%df\’,也就是admin%df%5c%27,而将其转换为gbk编码后，%df%5c代表一个中文字符，然后就被编码成運，喜闻乐见的，我们的单引号就被插入了。</p>
-<p>(题外话：不同浏览器在得到一个没有指定编码的html响应时可能会采用不同的编码，我的Chrome和Firefox就是这样。所以，请手动设置编码方式)</p>
-<p>哪些范围会被gbk编码成汉字呢？根据gbk编码，第一个字节ascii码大于128，基本上就可以了。如果character_set_client是gb2312，能不能成功呢？理论上来说，只要\，也就是%5c在某些字符集的低位中，都是可以的，不巧，gb2312的低位范围是0xA1~0xFE，所以不可以。</p>
-<h2 id="0x03-初衷"><a href="#0x03-初衷" class="headerlink" title="0x03 初衷"></a>0x03 初衷</h2><p>我为啥写这篇文章？phithon在Freebuf上的<a href="http://www.freebuf.com/articles/web/31537.html" target="_blank" rel="external">浅析白盒审计中的字符编码及SQL注入</a>写得非常好，但是我认为在SQL语句的流向方面写得不够详细，我做了一点补充，其余内容请参看phithon大神的文章。如果有什么不明白，那多半是SQL语句的流向以及编码状态不明白，可以参考我上面浏览器编码的比喻。</p>
-<h2 id="0x04-意识"><a href="#0x04-意识" class="headerlink" title="0x04 意识"></a>0x04 意识</h2><p>玩儿英雄联盟的人都知道，意识最为重要。做安全也是如此，意识本质上是安全观。宽字节的问题，有可能改头换面出现在另一个地方，就看下次遇到的时候，谁能思考得深，看到更内在的东西了。</p>
+        <h2 id="0x00-介绍"><a href="#0x00-介绍" class="headerlink" title="0x00 介绍"></a>0x00 介绍</h2><p>巡风是YSRC开源的一款资产及运维漏洞管理工具。在针对YSRC做更改的时候注意遵从GPL License。</p>
+<h2 id="0x01-代码结构"><a href="#0x01-代码结构" class="headerlink" title="0x01 代码结构"></a>0x01 代码结构</h2><p>巡风包含一个Web管理模块，一个网络资产发现模块和一个漏洞监测模块。代码结构如下<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">│  Config.py  # 配置文件</div><div class="line">│  README.md  # 说明文档</div><div class="line">│  Run.bat  # Windows启动服务</div><div class="line">│  Run.py  # webserver</div><div class="line">│  Run.sh    # Linux启动服务，重新启动前需把进程先结束掉</div><div class="line">│  </div><div class="line">├─aider</div><div class="line">│      Aider.py  # 辅助验证脚本</div><div class="line">│      </div><div class="line">├─db  # 初始数据库结构</div><div class="line">│      </div><div class="line">├─masscan  # 内置编译好的Masscan程序（CentOS win64适用），需要chmod+x给执行权限（root），若无法使用请自行编译安装。 </div><div class="line">├─nascan</div><div class="line">│  │  NAScan.py # 网络资产信息抓取引擎</div><div class="line">│  │  </div><div class="line">│  ├─lib</div><div class="line">│  │      common.py 其他方法</div><div class="line">│  │      icmp.py  # ICMP发送类</div><div class="line">│  │      log.py  # 日志输出</div><div class="line">│  │      mongo.py  # 数据库连接</div><div class="line">│  │      scan.py  # 扫描与识别</div><div class="line">│  │      start.py  # 线程控制</div><div class="line">│  │      </div><div class="line">│  └─plugin</div><div class="line">│          masscan.py  # 调用Masscan脚本</div><div class="line">│          </div><div class="line">├─views</div><div class="line">│  │  View.py  # web请求处理</div><div class="line">│  │  </div><div class="line">│  ├─lib</div><div class="line">│  │      Conn.py  # 数据库公共类</div><div class="line">│  │      CreateExcel.py  # 表格处理</div><div class="line">│  │      Login.py  # 权限验证</div><div class="line">│  │      QueryLogic.py  # 查询语句解析</div><div class="line">│  │      </div><div class="line">│  ├─static #静态资源目录</div><div class="line">│  │              </div><div class="line">│  └─templates #模板文件目录</div><div class="line">│          </div><div class="line">└─vulscan</div><div class="line">    │  VulScan.py  # 漏洞检测引擎</div><div class="line">    │  </div><div class="line">    └─vuldb # 漏洞库目录</div></pre></td></tr></table></figure></p>
+<p>Run.py是*nix下的安装脚本，启动的后台脚本很多，大多数情况很难一次启动成功。注意在/var/log/xunfeng/查看日志。</p>
+<h2 id="0x02-Web模块"><a href="#0x02-Web模块" class="headerlink" title="0x02 Web模块"></a>0x02 Web模块</h2><p>Web框架是Flask，由Run.py启动，默认端口为80，主要代码在views目录下。数据库使用的是Mongodb，Web模块不多说。</p>
+<h2 id="0x03-资产发现模块"><a href="#0x03-资产发现模块" class="headerlink" title="0x03 资产发现模块"></a>0x03 资产发现模块</h2><p>巡风的定位是甲方，资产发现为每天固定时间扫描，这部分代码在nascan/NAScan.py中，如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (now_hour == int(ac_hour) <span class="keyword">and</span> now_day % int(cy_day) == <span class="number">0</span> <span class="keyword">and</span> now_date <span class="keyword">not</span> <span class="keyword">in</span> ac_data) <span class="keyword">or</span> NACHANGE[<span class="number">0</span>]:  <span class="comment"># 判断是否进入扫描时段</span></div><div class="line">               ac_data.append(now_date)</div><div class="line">               NACHANGE[<span class="number">0</span>] = <span class="number">0</span></div><div class="line">               log.write(<span class="string">'info'</span>, <span class="keyword">None</span>, <span class="number">0</span>, <span class="string">u'开始扫描'</span>)</div><div class="line">               s = start(CONFIG_INI)</div><div class="line">               s.masscan_ac = MASSCAN_AC</div><div class="line">               s.statistics = STATISTICS</div><div class="line">               s.run()</div><div class="line">           time.sleep(<span class="number">60</span>)</div></pre></td></tr></table></figure></p>
+<p>按照需要可以自行更改。</p>
+<p>如果不想用NAScan，可以使用masscan。调用masscan在nascan/plugin/masscan.py中，也可以自己按照需要使用其他扫描器，只需要仿照masscan.py再写一个即可。</p>
+<h2 id="0x04-漏洞扫描模块"><a href="#0x04-漏洞扫描模块" class="headerlink" title="0x04 漏洞扫描模块"></a>0x04 漏洞扫描模块</h2><p>上面说过，巡风的定位是甲方+运维安全问题。扫描的一般是弱口令和常见组件的高危漏洞。</p>
+<p>漏洞插件支持py脚本模式和json文件模式，py模式下需要有get_plugin_info函数和check函数，get_plugin_info函数比较重要的是keyword，确认哪些服务需要扫描。然后调用check函数，返回漏洞扫描结果。</p>
+<p>json模式下json有一些重要字段，例如，keyword，跟py模式中的keyword作用一样。plugin字段确定请求。data指定post请求的内容，analyzing指定对 HTTP response的分析，支持keyword，regex和md5。如果response中包含keyword或者满足正则表达式或者md5为指定值，则漏洞存在。</p>
+<h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>总体来说，巡风是一款不错的扫描工具，适合无力或者不值得自己开发扫描器的中小公司，稍加改造，即可适配。插件还实时保持更新，非常不错，不像某些公司开源以后就不管了，啥都没有。</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/WebSecurity/宽字节注入问题/" class="archive-article-date">
-  	<time datetime="2016-09-25T01:23:19.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-25</time>
+      <a href="/安全运维/ysrc巡风-一款优秀的甲方资产扫描工具/" class="archive-article-date">
+  	<time datetime="2017-02-17T05:43:29.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-17</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/宽字节/">宽字节</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全运维/">安全运维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/甲方/">甲方</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/WebSecurity/">Web安全</a>
+	<a class="article-category-link" href="/categories/安全运维/">安全运维</a>
 	</div>
 
 
@@ -195,18 +194,9 @@
   
 <nav id="article-nav">
   
-    <a href="/WebSecurity/CRLF注入/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CRLF注入
-        
-      </div>
-    </a>
   
-  
-    <a href="/Python/Python装饰器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python装饰器</div>
+    <a href="/WebSecurity/PHP运行模式与HTTP-PROXY漏洞分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PHP运行模式与HTTP_PROXY漏洞分析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -240,7 +230,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="宽字节注入问题" data-title="宽字节注入问题" data-url="http://blog.nudtcat.org/WebSecurity/宽字节注入问题/"></div>
+	<div class="ds-thread" data-thread-key="ysrc巡风-一款优秀的甲方资产扫描工具" data-title="ysrc巡风-一款优秀的甲方资产扫描工具" data-url="http://blog.nudtcat.org/安全运维/ysrc巡风-一款优秀的甲方资产扫描工具/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
