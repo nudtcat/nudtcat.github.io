@@ -131,6 +131,68 @@
       <div class="body-wrap">
         
   
+    <article id="post-Two-Factor-Auth系统思路" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/安全/Two-Factor-Auth系统思路/">Two-Factor-Auth系统思路</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-初衷"><a href="#0x00-初衷" class="headerlink" title="0x00 初衷"></a>0x00 初衷</h2><p>帐号越来越多，越来越杂，个人信息泄漏问题越来越严重，如何设置一个好记而又强大的密码是一个难题。</p>
+<h2 id="0x01-现状"><a href="#0x01-现状" class="headerlink" title="0x01 现状"></a>0x01 现状</h2><p>很多人各个地方的密码都是一样的，这样风险很大，密码被泄露一次就能导致所有网站失守。况且，不同的网站信任等级不同，例如阿里被攻击导致密码泄漏可能性很小，而某个野鸡论坛可能就是一个钓鱼论坛，主要是骗取你的密码。设想这样一个场景，你的苹果设备被盗，对方无法解开你的Apple ID，设备被卖到黑产团队，黑产团队引诱你注册一个论坛，而你的密码是一样的，设备就丢失了。</p>
+<p>另外，有人提倡用古诗做密码，一个帐号还好，那么多网站，那么多账号，哪记得那么多诗？还有诗句中诡异的变化？用ppnn13%dkstFeb.1st来表示娉娉袅袅十三余，豆蔻梢头二月初，用ppnn13%dkstFeb.1st当密码？虽然很难用彩虹表来跑这样的密码，但是很多网站对特殊字符有要求，到时候你就哭去吧。而且，也不能解决引诱注册的问题。</p>
+<p>还有人使用一个规律来生成密码，不同的网站有一部分不同，这种方法稍微好一些，但是各种网站对长度和特殊字符要求不一，有的要求特殊字符和大小写，有的要求大小写和数字，有的不能用特殊字符，有的有长度要求。生成的密码如果不符合网站的规则，只能懵逼。</p>
+<p>现在比较好的纪录密码的方式是利用第三方软件，例如1password，这是一个推荐的解决方法。但是也有一些小问题，它是收费的（当然，为软件付费是应该的），另外，最近cloudflare内存泄漏导致1password受到影响，可能泄漏用户密码。而且有的时候使用的不是自己的常用设备，没有1password，也不是很方便。</p>
+<h2 id="0x02-Two-Factor-Auth-System-设计"><a href="#0x02-Two-Factor-Auth-System-设计" class="headerlink" title="0x02 Two-Factor-Auth System 设计"></a>0x02 Two-Factor-Auth System 设计</h2>
+        <p class="article-more-link">
+          <a  href="/安全/Two-Factor-Auth系统思路/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/安全/Two-Factor-Auth系统思路/" class="archive-article-date">
+  	<time datetime="2017-03-14T11:47:36.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-14</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/安全/">安全</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-ysrc巡风-一款优秀的甲方资产扫描工具" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -658,63 +720,6 @@
 
 
   
-    <article id="post-关于信任的反思" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Chat/关于信任的反思/">关于信任的反思</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0x01-信任"><a href="#0x01-信任" class="headerlink" title="0x01 信任"></a>0x01 信任</h2><p>很多安全事件的问题都出现在信任上，上层模块对底层模块的信任，人对软件的信任，人对人的信任，都是安全问题频发的地方。<br>
-        <p class="article-more-link">
-          <a  href="/Chat/关于信任的反思/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/Chat/关于信任的反思/" class="archive-article-date">
-  	<time datetime="2016-09-25T11:54:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-25</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/信任/">信任</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/Chat/">杂谈</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -818,7 +823,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP漏洞/" style="font-size: 10px;">PHP漏洞</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RFID/" style="font-size: 15px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 15px;">安全</a> <a href="/tags/安全运维/" style="font-size: 10px;">安全运维</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/甲方/" style="font-size: 10px;">甲方</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
+    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP漏洞/" style="font-size: 10px;">PHP漏洞</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/RFID/" style="font-size: 13.33px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 16.67px;">安全</a> <a href="/tags/安全运维/" style="font-size: 10px;">安全运维</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/甲方/" style="font-size: 10px;">甲方</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
     			</div>
     	</section>
     
