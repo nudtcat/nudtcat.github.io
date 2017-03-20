@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2017-03-14T13:19:19.000Z</updated>
+  <updated>2017-03-20T07:05:56.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CA简介与HTTPS抓包原理</title>
+    <link href="http://blog.nudtcat.org/%E5%AE%89%E5%85%A8/CA%E7%AE%80%E4%BB%8B%E4%B8%8EHTTPS%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/"/>
+    <id>http://blog.nudtcat.org/安全/CA简介与HTTPS抓包原理/</id>
+    <published>2017-03-19T13:49:15.000Z</published>
+    <updated>2017-03-20T07:05:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-知识背景"><a href="#0x00-知识背景" class="headerlink" title="0x00 知识背景"></a>0x00 知识背景</h2><p>这篇文章主要介绍使用抓包工具抓取HTTPS的原理以及发生的事情，阅读这篇文章之前，最好有如下知识背景</p>
+<ul>
+<li>非对称密码简介</li>
+<li>HTTPS</li>
+<li>抓包软件的简单使用，例如Burp Suite或者Charles。</li>
+</ul>
+<p>中间人攻击：例如在客户端和服务器中间有很多路由器，路由器的位置就是中间人，路由器篡改，插入通信内容，就属于中间人攻击，常见的有运营商插入js广告等。</p>
+<h2 id="0x01-浏览器提示您的连接不安全的背后"><a href="#0x01-浏览器提示您的连接不安全的背后" class="headerlink" title="0x01 浏览器提示您的连接不安全的背后"></a>0x01 浏览器提示您的连接不安全的背后</h2><p>当我们在浏览某些https网站的时候，浏览器可能会提示您的连接不安全，例如在12306订票，访问 <a href="https://kyfw.12306.cn/otn" target="_blank" rel="external">https://kyfw.12306.cn/otn</a> 时，或者访问一个内网中防火墙或者DNS管理页面时，会出现如下图所示的提示<br><a id="more"></a><br><img src="/images/170319_01.png" alt="">这是为什么呢？</p>
+<p>首先从HTTPS协议说起，HTTPS主要能起到两个作用，一个是保证浏览器和服务器的通信内容不被中间人嗅探到明文，二是保证浏览器访问的服务器确实是服务器所宣称的服务器，而没有被中间人伪造，例如访问 <a href="https://www.google.com" target="_blank" rel="external">https://www.google.com</a> ，服务器必须证明自己就是 <a href="https://www.google.com" target="_blank" rel="external">https://www.google.com</a> 。实际上要达到第一点，必须先做到第二点。</p>
+<p>服务器怎样证明自己的清白呢？首先，HTTPS服务器提供向客户端发送自己的证书，证书就是一个公钥加上一些附加信息，按照证书格式封装好。服务器的这个证书是哪里来的呢？是CA颁发的，CA在确认了服务器的身份以后使颁发一个证书给服务器，需要确认一个证书是否可信时，使用CA自己的公钥（也就是CA自己的证书）对服务器的证书做校验，如果能通过，则说明证书有效，服务器能被信任。</p>
+<p>那如何保证CA自己的证书是可信的而没有被中间人篡改呢？操作系统内置了一些CA的证书，也就是根证书，保证了CA证书的可信。</p>
+<p>如果浏览器提示您的连接不安全，说明服务器的证书没有通过CA的校验。这种情况可能是服务器的证书是服务器自己生成的，不是CA颁发的，所有通不过CA的校验，或者这个所谓的服务器是中间人伪造的，证书是中间人伪造的，这样，中间人就能解密客户端与服务器的传输内容了。所以连接是不安全的。</p>
+<h2 id="0x02-HTTPS抓包"><a href="#0x02-HTTPS抓包" class="headerlink" title="0x02 HTTPS抓包"></a>0x02 HTTPS抓包</h2><p>在使用Burp Suite抓取HTTPS的时候，浏览器提示您的连接不安全，这是因为服务器的证书是Burp Suite颁发的，通不过CA的认证。Burp Suite为了解密通讯内容，只能使用自己的CA给自己颁发证书，而这个CA是不受信任的。</p>
+<p>怎样不让浏览器提示呢？信任Burp Suite用来颁发证书的CA就可以了，在Burp Suite中导出CA的根证书，这个根证书是Burp Suite的CA生成的，如果用它来验证Burp Suite CA颁发的证书，当然可以通过。把这个根证书导入操作系统的根证书中，设置为信任，那么Burp Suite颁发的所有证书都能被信任，浏览器就不会产生这个提示了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0x00-知识背景&quot;&gt;&lt;a href=&quot;#0x00-知识背景&quot; class=&quot;headerlink&quot; title=&quot;0x00 知识背景&quot;&gt;&lt;/a&gt;0x00 知识背景&lt;/h2&gt;&lt;p&gt;这篇文章主要介绍使用抓包工具抓取HTTPS的原理以及发生的事情，阅读这篇文章之前，最好有如下知识背景&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非对称密码简介&lt;/li&gt;
+&lt;li&gt;HTTPS&lt;/li&gt;
+&lt;li&gt;抓包软件的简单使用，例如Burp Suite或者Charles。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;中间人攻击：例如在客户端和服务器中间有很多路由器，路由器的位置就是中间人，路由器篡改，插入通信内容，就属于中间人攻击，常见的有运营商插入js广告等。&lt;/p&gt;
+&lt;h2 id=&quot;0x01-浏览器提示您的连接不安全的背后&quot;&gt;&lt;a href=&quot;#0x01-浏览器提示您的连接不安全的背后&quot; class=&quot;headerlink&quot; title=&quot;0x01 浏览器提示您的连接不安全的背后&quot;&gt;&lt;/a&gt;0x01 浏览器提示您的连接不安全的背后&lt;/h2&gt;&lt;p&gt;当我们在浏览某些https网站的时候，浏览器可能会提示您的连接不安全，例如在12306订票，访问 &lt;a href=&quot;https://kyfw.12306.cn/otn&quot;&gt;https://kyfw.12306.cn/otn&lt;/a&gt; 时，或者访问一个内网中防火墙或者DNS管理页面时，会出现如下图所示的提示&lt;br&gt;
+    
+    </summary>
+    
+      <category term="安全" scheme="http://blog.nudtcat.org/categories/%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="协议安全" scheme="http://blog.nudtcat.org/tags/%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="中间人攻击" scheme="http://blog.nudtcat.org/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>Two-Factor-Auth系统思路</title>
