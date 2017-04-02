@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2017-04-02T03:56:48.000Z</updated>
+  <updated>2017-04-02T04:13:49.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.nudtcat.org/%E5%AE%89%E5%85%A8/%E5%85%88%E7%9F%A5%E5%A4%A7%E4%BC%9A%E5%90%8E%E8%AE%B0/"/>
     <id>http://blog.nudtcat.org/安全/先知大会后记/</id>
     <published>2017-04-02T02:05:46.000Z</published>
-    <updated>2017-04-02T03:56:48.000Z</updated>
+    <updated>2017-04-02T04:13:49.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x00-PPT"><a href="#0x00-PPT" class="headerlink" title="0x00 PPT"></a>0x00 PPT</h2><p>先知大会过去一周了，PPT也在前两天放出来了，下载地址</p>
 <ul>
@@ -37,7 +37,7 @@
 <p>如何真实有效的对抗勒索软件，这个议题来自倪茂志，人很跳，技术也不错，有一个有意思的点就是他应对勒索软件的方法是诱捕，勒索软件操作陷阱软件即被发现。这个思路不错，反爬虫也有这个思路，但是，你能诱捕勒索软件，如果你的备份空间不够的话，勒索软件也能诱捕你。整个议题很有意思。</p>
 <p>没有绝对的WAF防御，来自从容牛，从容牛介绍了很多绕过WAF的姿势，演讲很幽默。个人认为，现在的WAF做得确实不够，看到WAF需要进步的同时，提升开发的安全编码素质也是非常重要的。WAF为标，安全素质为本。当然，WAF的投入产出比更高。但是，建设更安全的互联网，本是关键啊。</p>
 <p>猪猪侠，我的白帽学习路线，走进猪猪侠的内心，窥探猪猪侠的成长之路。几点个人看法：计算机知识是本，至少达到科班水平。危机意识，忧患意识。我个人认为看书比看视频快，而且效果好。</p>
-<h2 id="0x02-趋势"><a href="#0x02-趋势" class="headerlink" title="0x02 趋势"></a>0x02 趋势</h2><p>参会出了面基(小透明，无基可面)，膜拜大牛(大牛都不认识我)学习姿势，玩，还有就是看看趋势，大家都在做什么，发展成什么样子了。今年有两个针对DNS基础数据分析的议题，有一个针对勒索软件的议题，有一个针对云上漏洞挖掘的议题(虽然没听懂)，只能说说表面现象啦，有什么趋势？小菜不知道(我能怎么办，我也很绝望啊)</p>
+<h2 id="0x02-趋势"><a href="#0x02-趋势" class="headerlink" title="0x02 趋势"></a>0x02 趋势</h2><p>参会除了面基(小透明，无基可面)，膜拜大牛(大牛都不认识我)学习姿势，玩，还有就是看看趋势，大家都在做什么，发展成什么样子了。今年有两个针对DNS基础数据分析的议题，有一个针对勒索软件的议题，有一个针对云上漏洞挖掘的议题(虽然没听懂)，只能说说表面现象啦，有什么趋势？小菜不知道(我能怎么办，我也很绝望啊)</p>
 <p>EOF</p>
 ]]></content>
     
@@ -240,9 +240,9 @@
       <category term="Web安全" scheme="http://blog.nudtcat.org/categories/WebSecurity/"/>
     
     
-      <category term="Web安全" scheme="http://blog.nudtcat.org/tags/Web%E5%AE%89%E5%85%A8/"/>
-    
       <category term="PHP漏洞" scheme="http://blog.nudtcat.org/tags/PHP%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="Web安全" scheme="http://blog.nudtcat.org/tags/Web%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
