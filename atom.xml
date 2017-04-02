@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
-  <updated>2017-03-20T07:05:56.000Z</updated>
+  <updated>2017-04-02T03:56:48.000Z</updated>
   <id>http://blog.nudtcat.org/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>先知大会后记</title>
+    <link href="http://blog.nudtcat.org/%E5%AE%89%E5%85%A8/%E5%85%88%E7%9F%A5%E5%A4%A7%E4%BC%9A%E5%90%8E%E8%AE%B0/"/>
+    <id>http://blog.nudtcat.org/安全/先知大会后记/</id>
+    <published>2017-04-02T02:05:46.000Z</published>
+    <updated>2017-04-02T03:56:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-PPT"><a href="#0x00-PPT" class="headerlink" title="0x00 PPT"></a>0x00 PPT</h2><p>先知大会过去一周了，PPT也在前两天放出来了，下载地址</p>
+<ul>
+<li><a href="https://xianzhi.aliyun.com/forum/attachment/big_size/2017_xianzhi_ppt.rar.rar" target="_blank" rel="external">先知PPT1</a> 解压密码xianzhi</li>
+<li><a href="https://xianzhi.aliyun.com/forum/attachment/big_size/%E6%88%91%E7%9A%84%E7%99%BD%E5%B8%BD%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF-%E7%8C%AA%E7%8C%AA%E4%BE%A0.pdf" target="_blank" rel="external">猪猪侠-我的白帽学习路线</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/attachment/big_size/WAF%E6%98%AF%E6%97%B6%E5%80%99%E8%B7%9F%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%B4%E5%86%8D%E8%A7%81.pdf" target="_blank" rel="external">破见-WAF是时候和正则表达式说再见了</a></li>
+</ul>
+<p>总结一下，写一写自己的感受吧。动笔之时，诚惶诚恐，本人菜鸟一只，斗胆班门弄斧，说一说大牛们的议题。疏漏错误之处，请不吝赐教。</p>
+<h2 id="0x01-议题"><a href="#0x01-议题" class="headerlink" title="0x01 议题"></a>0x01 议题</h2><p>第一个想说的议题来自Gr36_，介绍了众测中遇到的一些漏洞。说一说印象比较深刻的吧，利用passive dns收集信息，还给了几个网站。这类信息的泄漏几乎无法避免，在防御中需要注意。另一个是利用网站和APP的逻辑问题，形成一个有效攻击。最后是自动化挖洞的架构，基本上大牛都有自己的类似框架吧，在这些攻击的基础设施上体现了安全小组的另一个作用，除了知识交流，还有就是共享一些攻击的基础设施，共同的XSS平台，共同的运维类漏洞扫描平台等，框架搭好之后，重点就是payload的积累，人多力量大，因此，一个水平一般的团队共同开发的平台可能比大牛一个人开发的效果好。重点来了，<code>求团队收留!!!留言或者联系我:nudtcat@gmail.com</code><br><a id="more"></a></p>
+<p>另一个想说的议题来自破见，WAF是时候跟正则表达式说再见了，破见认为基于正则表达式的WAF误报和漏报很难平衡，容易绕过。还存在基于正则表达式的DDOS攻击。因此，他提出了基于语义检测的WAF，对用户输入做词法分析，之后做语法分析，然后在语法分析的结果中检测攻击。还提出了基于统计的机器学习WAF，本质就是分类和聚类，最后畅想了基于深度学习的WAF。</p>
+<p>议题信息量很大，我也有幸和破见做了简单的交流。首先做一个简单的普及，正则表达式的匹配是基于有限状态机，又有确定性有限状态机DFA和非确定性有限状态机NFA两种正则引擎设计思路，为了满足懒惰匹配，回溯，捕获等要求，NFA用得很多，例如Java中的java.util.regex.Pattern。缺点是匹配次数多，回溯次数多，根据正则不同，复杂度可能为2^n,n^2,n。细节可以搜索，Freebuf上也有文章<a href="http://www.freebuf.com/articles/network/124422.html" target="_blank" rel="external">浅析ReDoS的原理与实践</a>，正则的复杂度达到2^n，就容易造成DoS攻击。破见认为，复杂度达到n^2，能造成DDoS攻击。而n^2很容易达到，例如正则a.*b，就满足这个特点，因此，基于正则的WAF容易收到DDoS攻击。</p>
+<p>不过，我认为基于语义分析的WAF也极其容易有这个漏洞，词法分析，本质上就是利用有限自动机的状态变换来做匹配和tokenization，那么，攻击者同样可以利用有限状态机的回溯来产生DDoS攻击。况且，像lex这类的词法解析器就是用正则来描述匹配规则，所以，这个问题不论是正则还是词法分析的WAF，应该都存在。</p>
+<p>另外，现在的WAF都有一个原理上特性，那就是判断是否攻击的重要(唯一)依据就是HTTP请求。如果把一个HTTP请求到响应过程看作(本来就是)一个程序的运行的话，那么HTTP请求就是输入，仅根据一个程序的输入来判断这个程序的运行是否有害，好像不妥吧。现在的WAF都工作在Server层，只能拿到服务器(例如Apache，Nginx)能拿到的东西。我和几个小伙伴在做一个工作在解释器层(PHP，Java，.net)的WAF，它能拿到输入和运行过程，在解释层做词法分析，无规则! 不需要维护规则! 暂时只写了PHP的，效果还不错，过一段时间放一部分出来。</p>
+<p>如何真实有效的对抗勒索软件，这个议题来自倪茂志，人很跳，技术也不错，有一个有意思的点就是他应对勒索软件的方法是诱捕，勒索软件操作陷阱软件即被发现。这个思路不错，反爬虫也有这个思路，但是，你能诱捕勒索软件，如果你的备份空间不够的话，勒索软件也能诱捕你。整个议题很有意思。</p>
+<p>没有绝对的WAF防御，来自从容牛，从容牛介绍了很多绕过WAF的姿势，演讲很幽默。个人认为，现在的WAF做得确实不够，看到WAF需要进步的同时，提升开发的安全编码素质也是非常重要的。WAF为标，安全素质为本。当然，WAF的投入产出比更高。但是，建设更安全的互联网，本是关键啊。</p>
+<p>猪猪侠，我的白帽学习路线，走进猪猪侠的内心，窥探猪猪侠的成长之路。几点个人看法：计算机知识是本，至少达到科班水平。危机意识，忧患意识。我个人认为看书比看视频快，而且效果好。</p>
+<h2 id="0x02-趋势"><a href="#0x02-趋势" class="headerlink" title="0x02 趋势"></a>0x02 趋势</h2><p>参会出了面基(小透明，无基可面)，膜拜大牛(大牛都不认识我)学习姿势，玩，还有就是看看趋势，大家都在做什么，发展成什么样子了。今年有两个针对DNS基础数据分析的议题，有一个针对勒索软件的议题，有一个针对云上漏洞挖掘的议题(虽然没听懂)，只能说说表面现象啦，有什么趋势？小菜不知道(我能怎么办，我也很绝望啊)</p>
+<p>EOF</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0x00-PPT&quot;&gt;&lt;a href=&quot;#0x00-PPT&quot; class=&quot;headerlink&quot; title=&quot;0x00 PPT&quot;&gt;&lt;/a&gt;0x00 PPT&lt;/h2&gt;&lt;p&gt;先知大会过去一周了，PPT也在前两天放出来了，下载地址&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://xianzhi.aliyun.com/forum/attachment/big_size/2017_xianzhi_ppt.rar.rar&quot;&gt;先知PPT1&lt;/a&gt; 解压密码xianzhi&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://xianzhi.aliyun.com/forum/attachment/big_size/%E6%88%91%E7%9A%84%E7%99%BD%E5%B8%BD%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF-%E7%8C%AA%E7%8C%AA%E4%BE%A0.pdf&quot;&gt;猪猪侠-我的白帽学习路线&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://xianzhi.aliyun.com/forum/attachment/big_size/WAF%E6%98%AF%E6%97%B6%E5%80%99%E8%B7%9F%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%B4%E5%86%8D%E8%A7%81.pdf&quot;&gt;破见-WAF是时候和正则表达式说再见了&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结一下，写一写自己的感受吧。动笔之时，诚惶诚恐，本人菜鸟一只，斗胆班门弄斧，说一说大牛们的议题。疏漏错误之处，请不吝赐教。&lt;/p&gt;
+&lt;h2 id=&quot;0x01-议题&quot;&gt;&lt;a href=&quot;#0x01-议题&quot; class=&quot;headerlink&quot; title=&quot;0x01 议题&quot;&gt;&lt;/a&gt;0x01 议题&lt;/h2&gt;&lt;p&gt;第一个想说的议题来自Gr36_，介绍了众测中遇到的一些漏洞。说一说印象比较深刻的吧，利用passive dns收集信息，还给了几个网站。这类信息的泄漏几乎无法避免，在防御中需要注意。另一个是利用网站和APP的逻辑问题，形成一个有效攻击。最后是自动化挖洞的架构，基本上大牛都有自己的类似框架吧，在这些攻击的基础设施上体现了安全小组的另一个作用，除了知识交流，还有就是共享一些攻击的基础设施，共同的XSS平台，共同的运维类漏洞扫描平台等，框架搭好之后，重点就是payload的积累，人多力量大，因此，一个水平一般的团队共同开发的平台可能比大牛一个人开发的效果好。重点来了，&lt;code&gt;求团队收留!!!留言或者联系我:nudtcat@gmail.com&lt;/code&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="安全" scheme="http://blog.nudtcat.org/categories/%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="安全" scheme="http://blog.nudtcat.org/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>CA简介与HTTPS抓包原理</title>

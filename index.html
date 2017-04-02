@@ -131,6 +131,70 @@
       <div class="body-wrap">
         
   
+    <article id="post-先知大会后记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/安全/先知大会后记/">先知大会后记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-PPT"><a href="#0x00-PPT" class="headerlink" title="0x00 PPT"></a>0x00 PPT</h2><p>先知大会过去一周了，PPT也在前两天放出来了，下载地址</p>
+<ul>
+<li><a href="https://xianzhi.aliyun.com/forum/attachment/big_size/2017_xianzhi_ppt.rar.rar">先知PPT1</a> 解压密码xianzhi</li>
+<li><a href="https://xianzhi.aliyun.com/forum/attachment/big_size/%E6%88%91%E7%9A%84%E7%99%BD%E5%B8%BD%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF-%E7%8C%AA%E7%8C%AA%E4%BE%A0.pdf">猪猪侠-我的白帽学习路线</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/attachment/big_size/WAF%E6%98%AF%E6%97%B6%E5%80%99%E8%B7%9F%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%B4%E5%86%8D%E8%A7%81.pdf">破见-WAF是时候和正则表达式说再见了</a></li>
+</ul>
+<p>总结一下，写一写自己的感受吧。动笔之时，诚惶诚恐，本人菜鸟一只，斗胆班门弄斧，说一说大牛们的议题。疏漏错误之处，请不吝赐教。</p>
+<h2 id="0x01-议题"><a href="#0x01-议题" class="headerlink" title="0x01 议题"></a>0x01 议题</h2><p>第一个想说的议题来自Gr36_，介绍了众测中遇到的一些漏洞。说一说印象比较深刻的吧，利用passive dns收集信息，还给了几个网站。这类信息的泄漏几乎无法避免，在防御中需要注意。另一个是利用网站和APP的逻辑问题，形成一个有效攻击。最后是自动化挖洞的架构，基本上大牛都有自己的类似框架吧，在这些攻击的基础设施上体现了安全小组的另一个作用，除了知识交流，还有就是共享一些攻击的基础设施，共同的XSS平台，共同的运维类漏洞扫描平台等，框架搭好之后，重点就是payload的积累，人多力量大，因此，一个水平一般的团队共同开发的平台可能比大牛一个人开发的效果好。重点来了，<code>求团队收留!!!留言或者联系我:nudtcat@gmail.com</code><br>
+        <p class="article-more-link">
+          <a  href="/安全/先知大会后记/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/安全/先知大会后记/" class="archive-article-date">
+  	<time datetime="2017-04-02T02:05:46.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-02</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/安全/">安全</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-CA简介与HTTPS抓包原理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -668,63 +732,6 @@
 
 
   
-    <article id="post-uri提取正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/正则表达式/uri提取正则表达式/">uri提取正则表达式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>uri的格式多种多样，经常需要校验uri或者分析uri提取各部分，下面提供一个自己写的正则表达式来提取uri，我用它来分析扫描器中输入的或者爬取到的uri，优先提取，由于水平有限，未能完全校验uri是否合法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">url_parse_re = <span class="string">r"^(\w*):\/\/(?:([^:]*)?(?::(.*))?@)?([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$"</span></div><div class="line"><span class="string">"""</div><div class="line">^(\w*):\/\/</div><div class="line">(?:       ([^:]*)?(?::(.*))?       @)?</div><div class="line">([0-9.\-A-Za-z]+)</div><div class="line">(?::(\d+))?</div><div class="line">(?:\/([^?#]*))?</div><div class="line">(?:\?([^#]*))?</div><div class="line">(?:#(.*))?$</div><div class="line"></div><div class="line">"""</span></div><div class="line">testcase = <span class="string">"protocol://username:password@www.sample.com:80/path.php?id=1#hash"</span></div><div class="line"></div><div class="line">r = re.compile(url_parse_re)</div><div class="line">str = re.match(r, testcase)</div><div class="line"><span class="keyword">if</span> str != <span class="keyword">None</span>:</div><div class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">9</span>):</div><div class="line">		<span class="keyword">print</span> x, str.group(x)</div></pre></td></tr></table></figure></p>
-        <p class="article-more-link">
-          <a  href="/正则表达式/uri提取正则表达式/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/正则表达式/uri提取正则表达式/" class="archive-article-date">
-  	<time datetime="2016-10-13T13:33:05.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-13</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/正则表达式/">正则表达式</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -846,7 +853,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP漏洞/" style="font-size: 10px;">PHP漏洞</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/RFID/" style="font-size: 13.33px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/中间人攻击/" style="font-size: 10px;">中间人攻击</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/协议安全/" style="font-size: 10px;">协议安全</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 16.67px;">安全</a> <a href="/tags/安全运维/" style="font-size: 10px;">安全运维</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/甲方/" style="font-size: 10px;">甲方</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
+    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP漏洞/" style="font-size: 10px;">PHP漏洞</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RFID/" style="font-size: 15px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/中间人攻击/" style="font-size: 10px;">中间人攻击</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/协议安全/" style="font-size: 10px;">协议安全</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 20px;">安全</a> <a href="/tags/安全运维/" style="font-size: 10px;">安全运维</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/甲方/" style="font-size: 10px;">甲方</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
     			</div>
     	</section>
     
@@ -876,7 +883,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">邮箱:nudtcat@gmail.com</div>
   	  	
     	</section>
     
