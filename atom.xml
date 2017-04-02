@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>喜欢冒险探索的程序猿</title>
-  <subtitle>喜欢冒险探索的程序猿</subtitle>
+  <title>s1m0n|探索 好奇心</title>
+  <subtitle>s1m0n|探索 好奇心</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.nudtcat.org/"/>
@@ -9,7 +9,7 @@
   <id>http://blog.nudtcat.org/</id>
   
   <author>
-    <name>nudtcat</name>
+    <name>s1m0n</name>
     
   </author>
   
