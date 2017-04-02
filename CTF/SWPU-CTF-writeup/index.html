@@ -7,24 +7,21 @@
   <title>SWPU CTF writeup | s1m0n|探索 好奇心</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="0x00 概括这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。
-比赛结果当然不太好，排名42。
 我按照顺序题目分类写写writeup吧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SWPU CTF writeup">
 <meta property="og:url" content="http://blog.nudtcat.org/CTF/SWPU-CTF-writeup/index.html">
 <meta property="og:site_name" content="s1m0n|探索 好奇心">
 <meta property="og:description" content="0x00 概括这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。
-比赛结果当然不太好，排名42。
 我按照顺序题目分类写写writeup吧。">
 <meta property="og:image" content="http://blog.nudtcat.org/images/161028_01.png">
 <meta property="og:image" content="http://blog.nudtcat.org/images/161028_02.bmp">
 <meta property="og:image" content="http://blog.nudtcat.org/images/161028_03.png">
 <meta property="og:image" content="http://blog.nudtcat.org/images/161028_04.png">
-<meta property="og:updated_time" content="2016-11-08T10:56:37.000Z">
+<meta property="og:updated_time" content="2017-04-02T04:08:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SWPU CTF writeup">
 <meta name="twitter:description" content="0x00 概括这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。
-比赛结果当然不太好，排名42。
 我按照顺序题目分类写写writeup吧。">
 <meta name="twitter:image" content="http://blog.nudtcat.org/images/161028_01.png">
   
@@ -163,7 +160,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="0x00-概括"><a href="#0x00-概括" class="headerlink" title="0x00 概括"></a>0x00 概括</h2><p>这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。</p>
-<p>比赛结果当然不太好，排名42。</p>
 <p>我按照顺序题目分类写写writeup吧。</p>
 <a id="more"></a>
 <h2 id="0x01-MISC-隐写题"><a href="#0x01-MISC-隐写题" class="headerlink" title="0x01 MISC 隐写题"></a>0x01 MISC 隐写题</h2><h3 id="做出的"><a href="#做出的" class="headerlink" title="做出的"></a>做出的</h3><h4 id="MISC2-150分"><a href="#MISC2-150分" class="headerlink" title="MISC2 150分"></a>MISC2 150分</h4><p>先从MISC2开始吧(并没有MISC1)。文件是一段流量的抓包，使用wireshark提取文件，其中有一个请求flag.zip的HTTP请求，提取flag.zip，解压得到一个ce.txt文件。大致如下图所示<br><img src="/images/161028_01.png" alt=""><br>第一次打CTF，不太熟悉套路，看了好久才发现可能是RGB值。行数为98457=887*111，可能就是长宽了。用Python PIL写了个脚本，图片还原如下<br><img src="/images/161028_02.bmp" alt=""></p>
