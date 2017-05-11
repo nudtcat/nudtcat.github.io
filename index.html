@@ -131,6 +131,75 @@
       <div class="body-wrap">
         
   
+    <article id="post-百度BSRC-SQL注入挑战赛部分writeup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/SQL注入/百度BSRC-SQL注入挑战赛部分writeup/">百度BSRC SQL注入挑战赛部分writeup</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x01-介绍"><a href="#0x01-介绍" class="headerlink" title="0x01 介绍"></a>0x01 介绍</h2><p>百度BSRC在4月底举办了一个SQL注入挑战赛，以靶机的形式供安全测试人员攻击。</p>
+<p>活动发布在百度安全应急响应中心微信公众号，判定标准分为两档：</p>
+<blockquote>
+<ol>
+<li>读取mysql系统信息(user,version)或数据库名</li>
+<li>通过SQL注入读取表内secret数据</li>
+</ol>
+</blockquote>
+<p>比赛时间是4月28到5月1日24点，等我看到这个比赛的时候已经5月1日晚上9点多了，5月1日24点以后靶机就停止运行了，水平有限，只达到第一档的标准，而且也不是最早提交case的。另外，由于靶机已经关闭，下文关于靶机的描述可能存在偏差。</p>
+<h2 id="0x02-过滤与绕过"><a href="#0x02-过滤与绕过" class="headerlink" title="0x02 过滤与绕过"></a>0x02 过滤与绕过</h2><p>靶机url：<a href="http://sqlitest.anquanbao.com.cn/api/query?art_id=1">http://sqlitest.anquanbao.com.cn/api/query?art_id=1</a></p>
+<p>靶机屏蔽了错误信息，因此基于报错的注入无法进行，从测试来看，盲注的可能性很大。</p>
+<p>经过测试，发现1在SQL语句中是整数。</p>
+<p>靶机过滤了一些基本的字符串处理函数，mid,left,right,substr,substring等函数都被过滤。<br>
+        <p class="article-more-link">
+          <a  href="/SQL注入/百度BSRC-SQL注入挑战赛部分writeup/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/SQL注入/百度BSRC-SQL注入挑战赛部分writeup/" class="archive-article-date">
+  	<time datetime="2017-05-10T15:31:07.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-05-10</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web安全/">web安全</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/SQL注入/">SQL注入</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-先知大会后记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -673,64 +742,6 @@
 
 
   
-    <article id="post-SWPU-CTF-writeup" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/CTF/SWPU-CTF-writeup/">SWPU CTF writeup</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0x00-概括"><a href="#0x00-概括" class="headerlink" title="0x00 概括"></a>0x00 概括</h2><p>这是我第一次参加CTF比赛。逆向小白，隐写小白，但是做出了所有的隐写题。最擅长Web方向(和编程)，而Web题做得不多。Web方向的知识还是不牢固，技巧不够熟练，实践经验不足。</p>
-<p>我按照顺序题目分类写写writeup吧。</p>
-        <p class="article-more-link">
-          <a  href="/CTF/SWPU-CTF-writeup/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/CTF/SWPU-CTF-writeup/" class="archive-article-date">
-  	<time datetime="2016-10-28T10:53:07.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-28</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/CTF/">CTF</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -852,7 +863,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP漏洞/" style="font-size: 10px;">PHP漏洞</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RFID/" style="font-size: 15px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/中间人攻击/" style="font-size: 10px;">中间人攻击</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/协议安全/" style="font-size: 10px;">协议安全</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 20px;">安全</a> <a href="/tags/安全运维/" style="font-size: 10px;">安全运维</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/甲方/" style="font-size: 10px;">甲方</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
+    				<a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP漏洞/" style="font-size: 10px;">PHP漏洞</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RFID/" style="font-size: 15px;">RFID</a> <a href="/tags/SQL注入/" style="font-size: 15px;">SQL注入</a> <a href="/tags/Web安全/" style="font-size: 20px;">Web安全</a> <a href="/tags/Web漏洞/" style="font-size: 10px;">Web漏洞</a> <a href="/tags/php漏洞/" style="font-size: 10px;">php漏洞</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a> <a href="/tags/中间人攻击/" style="font-size: 10px;">中间人攻击</a> <a href="/tags/信任/" style="font-size: 10px;">信任</a> <a href="/tags/协议安全/" style="font-size: 10px;">协议安全</a> <a href="/tags/大学生活/" style="font-size: 10px;">大学生活</a> <a href="/tags/安全/" style="font-size: 20px;">安全</a> <a href="/tags/安全运维/" style="font-size: 10px;">安全运维</a> <a href="/tags/宽字节/" style="font-size: 10px;">宽字节</a> <a href="/tags/扫描器/" style="font-size: 10px;">扫描器</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/漏洞/" style="font-size: 10px;">漏洞</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/甲方/" style="font-size: 10px;">甲方</a> <a href="/tags/装饰器/" style="font-size: 10px;">装饰器</a>
     			</div>
     	</section>
     
